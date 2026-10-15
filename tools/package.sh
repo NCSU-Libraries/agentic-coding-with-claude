@@ -17,13 +17,13 @@ mkdir -p "$out" site/examples
 
 for dir in starters/*/; do
   name=$(basename "$dir")
-  (cd "$dir" && zip -q -X -r "../../$out/$name.zip" . -x '.DS_Store')
+  (cd "$dir" && zip -q -X -r "../../$out/$name.zip" . -x '*.DS_Store')
 done
 
 for dir in examples/*/; do
   name=$(basename "$dir")
   if [ ! -f "$dir/dashboard.html" ]; then continue; fi
-  (cd "$dir" && zip -q -X -r "../../$out/$name-finished.zip" . -x '.DS_Store' -x 'screens/*')
+  (cd "$dir" && zip -q -X -r "../../$out/$name-finished.zip" . -x '*.DS_Store')
   mkdir -p "site/examples/$name"
   cp "$dir"/*.html "site/examples/$name/"
   # Show the memory and skill files as plain text pages next to the dashboards.

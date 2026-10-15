@@ -24,10 +24,10 @@
 <ul class="finish">
 <li>Claude Code installed and signed in on your laptop</li>
 <li>A dashboard, built by Claude from a messy spreadsheet</li>
-<li>One wrong assumption caught <b>before</b> any code was written</li>
+<li>Your plan checked against the boss's note, <b>before</b> any code was written</li>
 <li>The dashboard's key number checked against the official answer</li>
 <li>A <code>CLAUDE.md</code> that remembers, and a <code>/house-style</code> skill you keep</li>
-<li>A link you can share</li>
+<li>A link you can share, or a screenshot</li>
 <li>Something of your own</li>
 </ul>
 
@@ -35,7 +35,7 @@
 
 ::: {.two-col}
 ::: {}
-- **On your own:** the *{{< var self-guided.name >}}* activity. Same eight steps, a different trap.
+- **On your own:** the *{{< meta other-activity >}}* activity. Same eight steps, a different trap.
 - The **cheat sheet**, the **finished examples**, and these slides are all on the materials page
 - In Claude Code: `/powerup` for short interactive lessons
 - **Help** with access or setup: [go.ncsu.edu/getdatahelp](https://go.ncsu.edu/getdatahelp)

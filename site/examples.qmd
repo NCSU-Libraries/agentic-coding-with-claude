@@ -18,7 +18,7 @@ Finder to show them; on Windows, choose **View → Show → Hidden items** in Fi
 
 ## Study-room bookings
 
-[![The finished study-room dashboard](images/screens/study-rooms-styled.png){.shot}](examples/study-rooms/dashboard.html)
+[![The finished study-room dashboard](images/screens/study-rooms-styled.png){.shot fig-alt="Open the finished study-room dashboard"}](examples/study-rooms/dashboard.html)
 
 - [Open the dashboard](examples/study-rooms/dashboard.html) · [the dean's summary](examples/study-rooms/summary.html)
 - [`CLAUDE.md`](examples/study-rooms/CLAUDE.md.txt) · [the `house-style` skill](examples/study-rooms/SKILL.md.txt)
@@ -26,13 +26,14 @@ Finder to show them; on Windows, choose **View → Show → Hidden items** in Fi
 
 ## Campus café sales
 
-[![The finished café dashboard](images/screens/cafe-styled.png){.shot}](examples/cafe/dashboard.html)
+[![The finished café dashboard](images/screens/cafe-styled.png){.shot fig-alt="Open the finished café dashboard"}](examples/cafe/dashboard.html)
 
 - [Open the dashboard](examples/cafe/dashboard.html) · [the finals-week flyer](examples/cafe/flyer.html)
 - [`CLAUDE.md`](examples/cafe/CLAUDE.md.txt) · [the `house-style` skill](examples/cafe/SKILL.md.txt)
 - [Download the finished folder](downloads/cafe-finished.zip)
 
-## What happened in the rehearsals
+::: {.callout-note collapse="true"}
+## What happened in the rehearsals (spoilers for the plan step)
 
 Both activities went the same way in the steps that matter:
 
@@ -51,4 +52,5 @@ The lesson isn't that Claude is careless. It's thorough, and it still can't know
 them.
 
 One practical note from the café run: the first time you run a skill in a folder that had no skills before,
-Claude Code answers "Unknown skill" until you run `/reload-skills`.
+Claude Code can't find it until you run `/reload-skills`. It says **Unknown command: /house-style**.
+:::

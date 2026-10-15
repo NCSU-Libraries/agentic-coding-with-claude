@@ -22,10 +22,10 @@ build and check a dashboard, including the moment it goes wrong and how you catc
 <ul id="finish-line">
 <li><label><input type="checkbox" data-k="install"> Claude Code installed and signed in on your laptop</label></li>
 <li><label><input type="checkbox" data-k="dash"> A working dashboard, built by Claude from a messy spreadsheet</label></li>
-<li><label><input type="checkbox" data-k="catch"> One wrong assumption caught in the plan, before any code was written</label></li>
+<li><label><input type="checkbox" data-k="catch"> Your plan checked against the boss's note, before any code was written</label></li>
 <li><label><input type="checkbox" data-k="check"> The dashboard's key number checked against the official answer</label></li>
 <li><label><input type="checkbox" data-k="memory"> A <code>CLAUDE.md</code> that remembers your rule, and a <code>/house-style</code> skill you can reuse</label></li>
-<li><label><input type="checkbox" data-k="share"> A link to your dashboard you can share (Pro plan or higher)</label></li>
+<li><label><input type="checkbox" data-k="share"> A link to your dashboard you can share (Pro plan or higher), or a screenshot</label></li>
 <li><label><input type="checkbox" data-k="own"> Something of your own, built in the last ten minutes</label></li>
 </ul>
 :::
@@ -72,7 +72,8 @@ build and check a dashboard, including the moment it goes wrong and how you catc
 </video>
 
 <p class="small-muted">A captioned walkthrough of the study-room activity, built from a rehearsal run. The terminal
-screens are simplified re-creations; the dashboards are the real output.</p>
+screens are simplified re-creations; the dashboards are the real output. There's no sound; the captions tell the story,
+and every step is also written out on the activity page.</p>
 
 ## Today's plan
 

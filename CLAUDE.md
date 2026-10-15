@@ -35,6 +35,8 @@ other is self-guided. Which one runs live is set in `site/_variables.yml` (`live
 | `tools/package.sh` | Builds `site/downloads/*.zip` and `site/examples/` (both gitignored) |
 | `tools/shoot.mjs` | Headless Chrome screenshots of pages or slides. Gives a `slide` index in reading order |
 | `tools/record-tour.mjs` | Records the captioned walkthrough video |
+| `tools/check_links.py` | Checks every link and image in `site/_site` (`--web` also requests external URLs) |
+| `tools/demo-folder.sh` | Makes a fresh demo folder outside the repo and clears its Claude Code memory |
 
 ## Commands
 
@@ -71,7 +73,10 @@ The Pages workflow (`.github/workflows/deploy-pages.yml`) runs `package.sh`, the
   miss. `README.md` there is a plain data dictionary.
 - **Nested Claude Code sessions are blocked** from inside a Claude Code session by the auto-mode classifier. The
   rehearsals in `instructor/rehearsals/` are Sonnet sub-agents told to act as Claude Code on a Mac without Python.
-  A real CLI rehearsal is a manual step for Alp, described in the facilitation guide.
+  A real CLI rehearsal is a manual step for Alp, described in the facilitation guide. Attendees run Opus 5.5, the
+  default on every paid plan since 2.1.280, so Sonnet rehearsal results are only a guide.
+- **Rehearse and present with a clean Claude Code profile** (`CLAUDE_CONFIG_DIR=~/.claude-demo`). Alp's own setup has
+  plugins and settings attendees don't, and `tools/demo-folder.sh` clears memory in whichever profile is set.
 - **Quarto slides:**
   - Quarto gives level-1 (`#`) section slides the class `title-slide`, and `ncsu.scss` paints that white. The
     `.divider` rules in `site/theme/slides.scss` keep them red.

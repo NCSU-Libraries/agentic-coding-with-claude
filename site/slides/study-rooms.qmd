@@ -4,6 +4,7 @@ subtitle: "Data Science Special Topics · NC State University Libraries"
 date: 2026-10-15
 date-format: long
 rainbow-shot: study-rooms-rainbow.png
+other-activity: Campus café sales
 format:
   revealjs:
     theme: [default, ../theme/ncsu.scss, ../theme/slides.scss]
@@ -25,7 +26,7 @@ format:
 
 ## Get the starter folder
 
-1. Materials page → download **study-rooms.zip** → unzip it to your **Desktop**
+1. Materials page → **study-rooms.zip** → unzip it to your **Desktop**
 2. Go into the folder and start Claude Code:
 
 ::: {.cards .two}
@@ -38,14 +39,12 @@ format:
 ::: {.card}
 [Windows]{.card-title}
 
-<div class="type shell">cd $HOME\Desktop\study-rooms<br>claude</div>
-
-Not found? Try `$HOME\OneDrive\Desktop\study-rooms`
+<div class="type shell">cd $HOME&#92;Desktop&#92;study-rooms<br>claude</div>
 :::
 :::
 
-3. *"Do you trust the files in this folder?"* → **Yes**. Claude can read and change everything in it, so never start
-   it in your home folder.
+3. Not found? Type `cd` and a space, drag the folder onto the terminal, press Enter
+4. *"Quick safety check"* → **Yes, I trust this folder**. Never start Claude in your home folder
 
 # The loop, for real {.divider background-color="#CC0000"}
 
@@ -79,8 +78,9 @@ You have the booking system's export, `room_bookings.csv`, and Claude Code.
 
 <div class="type lg">What's in this folder? Give me a quick summary of the data. Don't change anything yet.</div>
 
-- Watch it **open the files itself**: `Read(README.md)`, `Bash(wc -l room_bookings.csv)`
+- Watch it **open the files itself**, and run commands like `Bash(wc -l room_bookings.csv)`
 - A chatbot would have asked you to paste them in
+- Copy every prompt from **Today's activity** on the materials page
 
 [Read its summary. What problems did it find?]{.pill .dark}
 
@@ -99,6 +99,7 @@ Claude can't see this note, and the prompt won't mention it. **On purpose.**
 - The mode line says `⏸ plan mode on`: it reads, may ask, then **proposes**
 - **It asks which year?** Answer from the note.
 - **It doesn't ask?** Look for 2024, 2025, 2026: calendar years.
+- **Pairs:** the checker reads the plan against the note
 
 ## Catch it before any code exists
 
@@ -127,7 +128,7 @@ Asking is good. Counting on it isn't.
 ## Hands up
 
 - Whose Claude **asked** which year to use?
-- Whose **assumed** calendar years?
+- Whose Claude **assumed** calendar years?
 - Whose plan already dealt with the **duplicate rows**?
 
 ::: {.statement style="margin-top:34px"}
@@ -139,15 +140,17 @@ Same prompt, thirty laptops, different behavior. *That's why you read the plan.*
 ::: {.two-col}
 ::: {}
 - Approve the first edit or two. **Read what it writes.**
-- Then <kbd>Shift</kbd>+<kbd>Tab</kbd> until the mode line says `⏵⏵ auto mode on`
+- Then **Yes, and switch to auto mode**, or <kbd>Shift</kbd>+<kbd>Tab</kbd> until the mode line says `⏵⏵ auto mode on`
+  (Windows: <kbd>Alt</kbd>+<kbd>M</kbd>)
 - <kbd>Esc</kbd> any time to stop and redirect
+- It takes a while. **Don't type the next prompt until it's done**
 :::
 
 ::: {}
 | Mode | Claude… |
 |---|---|
-| `⏸ manual` | asks before every edit and command |
-| `⏵⏵ accept edits` | edits freely; asks before commands |
+| `⏸ manual` | asks before edits and most commands |
+| `⏵⏵ accept edits` | edits, plus file commands like `mv` and `rm`; asks before others |
 | `⏸ plan` | proposes; changes nothing |
 | `⏵⏵ auto` (default) | acts; a safety check reviews each action |
 :::
@@ -163,7 +166,7 @@ Same prompt, thirty laptops, different behavior. *That's why you read the plan.*
 
 <div class="type">! open dashboard.html</div>
 
-[Windows: `! start dashboard.html`. Or just ask Claude to open it.]{.muted}
+[Windows: `! start dashboard.html`. Or just ask Claude to open it. Still building? Let it finish first.]{.muted}
 
 ![](../images/screens/study-rooms-dashboard.png){.shot height="430" fig-alt="A study-room dashboard built in a rehearsal run"}
 
@@ -189,8 +192,9 @@ A dashboard that **looks** right isn't one that **is** right. Your supervisor kn
 |---|---|
 | **4,351** | Fiscal year, each booking counted once ✓ |
 | 4,513 | Fiscal year, but 162 bookings counted twice (the duplicate rows) |
-| 3,696 | Calendar 2025: the plan's default year |
-| 3,829 | Calendar 2025, with the duplicates |
+| 3,127 | Calendar 2026, January to September only: the plan's default |
+| 3,696 | Calendar 2025, the last full calendar year |
+| 3,239 or 3,829 | Calendar 2026 or 2025, with the duplicates |
 
 ::: {.muted style="margin-top:18px"}
 Something on the page looks off? Screenshot it to the clipboard (Mac <kbd>⌃</kbd><kbd>⇧</kbd><kbd>⌘</kbd><kbd>4</kbd>,

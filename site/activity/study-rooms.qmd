@@ -13,8 +13,8 @@ and a skill, undo a bad change, and share what you built. The data is synthetic.
 ::: {.callout-note collapse="false"}
 ## Your finish line
 
-You're done when you have all of these. They're also on the [start page](../index.qmd#what-youll-leave-with),
-where you can tick them off.
+You're done when you have all of these. A fuller list is on the [start page](../index.qmd#what-youll-leave-with),
+where you can tick items off.
 
 - `dashboard.html` opens in your browser and reports **fiscal years**
 - Its FY2026 total matches the **official count**
@@ -23,11 +23,20 @@ where you can tick them off.
 - You have a link to share (Pro plan or higher), or a screenshot
 :::
 
+::: {.callout-tip}
+## Working as a pair?
+
+The **checker** holds two things: the note from your supervisor (step 2) and the official count (step 4). Read the plan
+against the note before anyone approves it, and compare the dashboard's number with the official one.
+:::
+
 ## Before you start
 
 1. Install Claude Code and sign in: see [Set up](../setup.qmd).
-2. Download [study-rooms.zip](../downloads/study-rooms.zip) and unzip it to your Desktop. You should have a folder
-   called `study-rooms` holding `README.md` and `room_bookings.csv`.
+2. Download [study-rooms.zip](../downloads/study-rooms.zip) and unzip it to your Desktop. On a Mac, double-click it
+   and drag the `study-rooms` folder it makes to your Desktop. On Windows, right-click it, choose **Extract All**, then
+   **Extract**, and drag the `study-rooms` folder to your Desktop. The folder holds `README.md` and
+   `room_bookings.csv`.
 3. Open a terminal, go into the folder, and start Claude Code:
 
 ::: {.panel-tabset}
@@ -53,8 +62,12 @@ If PowerShell says the path doesn't exist, your Desktop is probably in OneDrive:
 `cd $HOME\OneDrive\Desktop\study-rooms`.
 :::
 
-4. Claude Code asks whether you trust the files in this folder. You do: they're the ones you just unzipped. Choose
-   yes.
+Folder not found, on either system? Type `cd` and a space, drag the `study-rooms` folder from Finder or File
+Explorer onto the terminal window, and press {{< kbd Enter >}}. Then type `claude`.
+
+4. Claude Code asks for a quick safety check: is this a project you trust? It is: it holds only what you just
+   unzipped. Choose **Yes, I trust this folder** (use the arrow keys if it isn't highlighted) and press
+   {{< kbd Enter >}}. If Claude Code closes instead, that was **No, exit**: run `claude` again.
 
 ::: {.callout-warning}
 ## Work in this folder only
@@ -68,14 +81,14 @@ Desktop gives it far more reach than this task needs.
 Ask what's there before asking for anything else.
 
 ::: {.prompt}
-```text
+```default
 What's in this folder? Give me a quick summary of the data. Don't change anything yet.
 ```
 :::
 
 ::: {.watch}
-Claude opens the files itself. A chatbot would have asked you to paste them in. Each step it takes shows as a line
-like `Read(README.md)` or `Bash(wc -l room_bookings.csv)`.
+Claude opens the files itself. A chatbot would have asked you to paste them in. Each step shows as a line: the files it
+read, and commands it ran, like `Bash(wc -l room_bookings.csv)`. {{< kbd Ctrl-O >}} shows the details.
 :::
 
 Read its summary closely. It may point out problems in the data. **Note what it found**; you'll want it later.
@@ -84,7 +97,7 @@ Read its summary closely. It may point out problems in the data. **Note what it 
 ## What happened in our rehearsal
 
 Claude read both files with shell tools and reported: 10,279 rows but **9,930 real bookings** (349 rows exported
-twice), **213 rows saying `Rm 204`** instead of `Room 204`, and some blank group sizes. It ended with *"Tell me what you
+twice), **213 rows with old room labels like `Rm 204`** instead of `Room 204`, and some blank group sizes. It ended with *"Tell me what you
 want built, and whether to fix those three first."*
 :::
 
@@ -105,7 +118,7 @@ Claude ask you what "year" means, or assume?
 Now ask for the dashboard in plan mode, so Claude proposes before it builds:
 
 ::: {.prompt}
-```text
+```default
 /plan Build a one-page dashboard, dashboard.html, for my supervisor: total bookings per year, the busiest days and hours, and the most popular rooms. Make it a single file I can open by double-clicking.
 ```
 :::
@@ -114,13 +127,15 @@ The mode line at the bottom now reads `⏸ plan mode on`. Claude explores, may a
 plan and asks how to proceed. **Don't approve it yet.**
 
 - **If it asks which kind of year:** answer from the note. That's the agent doing its job, and you having the answer.
+  If it shows choices, use the arrow keys and {{< kbd Enter >}}, or choose the option to type your own answer and
+  paste the sentence below.
 - **If it doesn't ask:** read the plan. If it counts **calendar years** (2024, 2025, 2026), it made a reasonable
   assumption that's wrong for your office. It couldn't know; the rule isn't in the data.
 
 To fix a wrong assumption before any code exists, choose **No, keep planning**, then type:
 
 ::: {.prompt}
-```text
+```default
 We report by fiscal year: July 1 to June 30, named for the year it ends (FY2026 is July 2025 to June 2026). Use fiscal years.
 ```
 :::
@@ -129,7 +144,7 @@ When the new plan uses fiscal years, and covers any data problems from step 1 th
 **Yes, manually approve edits**.
 
 ::: {.watch}
-In our rehearsals Claude usually asked which year to use, but if you just said "go," its default was calendar years
+In all four of our rehearsals Claude asked which year to use, but if you just said "go," its default was calendar years
 every time. Don't count on being asked. In the default auto mode, Claude is built to keep working rather than stop
 for questions, so plan mode is where you get to catch an assumption.
 :::
@@ -147,8 +162,13 @@ partial fiscal years (FY2024 and FY2027) and compared the two complete ones.
 
 In manual mode, Claude asks before each change. Approve the first edit or two and look at what it's writing.
 
-Then press {{< kbd Shift-Tab >}} until the mode line reads `⏵⏵ auto mode on`, and let it finish. A separate safety
-check still reviews each action. Press {{< kbd Esc >}} at any point to stop it and redirect.
+Then switch to auto mode and let it finish. The next time Claude asks to run a command, choose **Yes, and switch to
+auto mode**. Or press {{< kbd Shift-Tab >}}, with no question on screen, until the mode line reads `⏵⏵ auto mode on`
+(on Windows, if Shift+Tab does nothing, press {{< kbd Alt-M >}}). A separate safety check still reviews each action.
+Press {{< kbd Esc >}} at any point to stop it and redirect.
+
+The build can take 10 to 20 minutes: Claude writes the page, runs its code and checks its own numbers. That's normal.
+**Wait for it to finish before you type the next prompt**: anything you type now reaches Claude mid-build.
 
 When it's done, open the dashboard. Ask Claude to open it, or:
 
@@ -156,7 +176,7 @@ When it's done, open the dashboard. Ask Claude to open it, or:
 ### Mac
 
 ::: {.prompt}
-```text
+```default
 ! open dashboard.html
 ```
 :::
@@ -164,7 +184,7 @@ When it's done, open the dashboard. Ask Claude to open it, or:
 ### Windows
 
 ::: {.prompt}
-```text
+```default
 ! start dashboard.html
 ```
 :::
@@ -172,7 +192,7 @@ When it's done, open the dashboard. Ask Claude to open it, or:
 
 The `!` runs a command yourself without leaving Claude Code. Double-clicking the file works too.
 
-![A dashboard from a rehearsal run. Yours will look different: same prompt, different result.](../images/screens/study-rooms-dashboard.png){.shot}
+![A dashboard from a rehearsal run. Yours will look different: same prompt, different result.](../images/screens/study-rooms-dashboard.png){.shot fig-alt="A study-room dashboard from a rehearsal run: bookings per year, the busiest days and hours, and the most popular rooms"}
 
 ::: {.callout-note collapse="true" appearance="simple"}
 ## What happened in our rehearsal
@@ -200,7 +220,7 @@ Whether it matches or not, make Claude prove it. `/goal` keeps Claude working un
 separate model checks after every turn:
 
 ::: {.prompt}
-```text
+```default
 /goal dashboard.html shows FY2026 = 4,351 bookings, the official count. If it doesn't, explain why before changing anything. Prove the final number by counting the CSV yourself, and don't hard-code it. Stop after 5 turns.
 ```
 :::
@@ -208,6 +228,20 @@ separate model checks after every turn:
 ::: {.watch}
 Why it might not match: the export lists some bookings twice. Did Claude mention that in step 1? Did the plan say
 what to do about it? The fix is to count each `booking_id` once.
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+## If your number doesn't match
+
+A wrong number usually points straight at its cause:
+
+| Your dashboard says | What happened |
+| --- | --- |
+| **4,351** | Fiscal year, each booking counted once ✓ |
+| 4,513 | Fiscal year, but 162 bookings counted twice (the duplicate rows) |
+| 3,127 | Calendar 2026, January to September only |
+| 3,696 | Calendar 2025, the last full calendar year |
+| 3,239 or 3,829 | Calendar 2026 or 2025, with the duplicates |
 :::
 
 If something on the page looks wrong, show Claude instead of describing it. Take a screenshot to the clipboard
@@ -228,18 +262,19 @@ Claude forgets everything when a conversation ends, except what's written down. 
 `CLAUDE.md`, a file Claude reads at the start of every session in this folder.
 
 ::: {.prompt}
-```text
+```default
 Add our reporting rules to CLAUDE.md: we use fiscal years (July 1 to June 30, named for the year they end), and each booking_id counts once.
 ```
 :::
 
-Run `/memory` to see it. You'll also see **auto memory**: notes Claude saves for itself as it works. `CLAUDE.md` is
-what *you* tell it; auto memory is what *it* learns.
+Run `/memory` to see it listed, along with **auto memory**: notes Claude saves for itself as it works. `CLAUDE.md`
+is what *you* tell it; auto memory is what *it* learns. Press {{< kbd Esc >}} to close the list; you don't need to
+open anything.
 
-Now test it. `/clear` starts a fresh conversation, then ask:
+Now test it. Type `/clear` to start a fresh conversation, then ask:
 
 ::: {.prompt}
-```text
+```default
 Which fiscal year had the most bookings, and how much did it grow over the year before?
 ```
 :::
@@ -261,7 +296,7 @@ A skill is a reusable set of instructions with a name. You run it as a command, 
 when it fits. (Skills are what Claude Code used to call custom commands.) Have Claude write one:
 
 ::: {.prompt}
-```text
+```default
 Create a skill called house-style that gives any web page we make the NC State look: Wolfpack Red #CC0000 for highlights, dark gray text on white, Arial or Helvetica, a red header bar with the page title, and a footer that says "Synthetic data made for a workshop." Use it whenever you create or restyle a web page.
 ```
 :::
@@ -270,7 +305,7 @@ Claude writes `.claude/skills/house-style/SKILL.md`. This folder had no skills b
 that folder yet. Tell it to look once:
 
 ::: {.prompt}
-```text
+```default
 /reload-skills
 ```
 :::
@@ -278,17 +313,18 @@ that folder yet. Tell it to look once:
 Then run your skill:
 
 ::: {.prompt}
-```text
+```default
 /house-style dashboard.html
 ```
 :::
 
-Reload the page in your browser.
+Reload the page in your browser. If Claude Code says **Unknown command: /house-style**, run `/reload-skills` and
+try again. Change the skill later? Run `/reload-skills` again.
 
 Now ask for something new, without mentioning the style, and watch whether Claude reaches for the skill on its own:
 
 ::: {.prompt}
-```text
+```default
 Make a one-page summary for the library's dean, summary.html, with the three numbers that matter most.
 ```
 :::
@@ -307,13 +343,13 @@ would mislead"*: most of the growth came from the four new rooms. See it on the
 Everyone makes a change they regret. Make one on purpose:
 
 ::: {.prompt}
-```text
+```default
 Make dashboard.html rainbow-colored, with Comic Sans everywhere.
 ```
 :::
 
-Look at it. Then type `/rewind` (or press {{< kbd Esc >}} twice on an empty prompt), pick the message before the
-rainbow, and choose to restore the code. Reload: it's back.
+Look at it. Then type `/rewind` (or press {{< kbd Esc >}} twice on an empty prompt), pick **your rainbow
+prompt** itself, and choose **Restore code**. Rewind goes back to just before the prompt you pick. Reload: it's back.
 
 ::: {.callout-warning}
 ## What rewind can't undo
@@ -325,7 +361,7 @@ as deleting (`rm`) or moving (`mv`) files. For real work, keep copies or use git
 ## <span class="step-badge">8</span> Share
 
 ::: {.prompt}
-```text
+```default
 Publish dashboard.html as an artifact.
 ```
 :::
@@ -342,11 +378,17 @@ You have ten minutes and an agent. Pick one:
 
 - **Improve the dashboard:** a filter by who booked, a dark mode, a button that downloads the numbers.
 - **Build something you'd use:** a study timer in NC State colors, a flashcard quiz from your own notes, a
-  weekly planner. Start in a new empty folder.
+  weekly planner. Start in a new empty folder: `/exit`, then `cd ..`, `mkdir my-project`, `cd my-project`
+  and `claude`, the same on Mac and Windows.
 - **Try your own data**, as long as it's data you're allowed to share with an AI service.
 
-Give it a finish line it can check, such as
-`/goal the page works when I double-click it and every button does something. Stop after 5 turns.`
+Give it a finish line Claude can prove from its own work, such as:
+
+::: {.prompt}
+```default
+/goal every button on the page has code behind it that visibly changes the page, and the page needs no other files. Prove it from the code. Stop after 5 turns.
+```
+:::
 
 ## If something goes wrong
 
@@ -357,6 +399,7 @@ Give it a finish line it can check, such as
 | Your number doesn't match and you're stuck | Ask: "List every reason the FY2026 count could differ from 4,351, and check each one." |
 | A window offers to install "command line developer tools" (Mac) | Claude tried a tool your Mac doesn't have. Choose **Not Now**; it will find another way. |
 | Claude has gone in circles twice | `/clear` and ask again, with what you learned in the first prompt. |
+| Claude says "You've hit your Opus limit" | Type `/model sonnet` and carry on. |
 | You're out of time | Download the [finished example](../downloads/study-rooms-finished.zip) and compare. |
 
 <p class="small-muted">Checked against Claude Code {{< var checked.version >}} on {{< var checked.date >}}.</p>

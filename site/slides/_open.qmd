@@ -29,10 +29,10 @@ Pair with a neighbor. You'll be the one who checks the agent's work.
 <ul class="finish">
 <li>Claude Code installed and signed in on your laptop</li>
 <li>A dashboard, built by Claude from a messy spreadsheet</li>
-<li>One wrong assumption caught <b>before</b> any code was written</li>
+<li>Your plan checked against the boss's note, <b>before</b> any code was written</li>
 <li>The dashboard's key number checked against the official answer</li>
 <li>A <code>CLAUDE.md</code> that remembers, and a <code>/house-style</code> skill you keep</li>
-<li>A link you can share</li>
+<li>A link you can share, or a screenshot</li>
 <li>Something of your own, built in the last ten minutes</li>
 </ul>
 

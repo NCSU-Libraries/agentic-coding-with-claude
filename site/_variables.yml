@@ -28,6 +28,7 @@ live:
 self-guided:
   name: "Campus café sales"
   activity: "activity/cafe.html"
+  slides: "slides/cafe.html"
 
 # Answer keys, from instructor/answer-keys.json (tools/make_data.py)
 key:
@@ -37,4 +38,3 @@ key:
     growth: "40%"
   cafe:
     fall-total: "$145,205.25"
-    exam-lift: "33%"

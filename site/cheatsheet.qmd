@@ -20,7 +20,7 @@ toc: false
 | --- | --- |
 | {{< kbd Esc >}} | Stop Claude mid-step, keeping the work so far, so you can redirect it |
 | {{< kbd Esc >}} {{< kbd Esc >}} (empty input) | Open the rewind menu: go back to an earlier point |
-| {{< kbd Shift-Tab >}} | Change the permission mode (see below) |
+| {{< kbd Shift-Tab >}} | Change the permission mode (see below). On Windows, if it does nothing: {{< kbd Alt-M >}} |
 | {{< kbd Ctrl-V >}} (Mac Terminal), {{< kbd Cmd-V >}} (iTerm2), {{< kbd Alt-V >}} (Windows) | Paste a screenshot into your prompt |
 | {{< kbd Ctrl-G >}} | Open the plan, or your prompt, in a text editor to edit it |
 | {{< kbd Ctrl-O >}} | Show the full details of what Claude did |
@@ -34,8 +34,8 @@ The bottom of the screen shows the current mode. {{< kbd Shift-Tab >}} cycles th
 | Mode | Claude… | Use it when |
 | --- | --- | --- |
 | `⏵⏵ auto mode on` (the default) | Acts without asking; a separate safety check reviews each action and blocks risky ones | You trust the direction of the task |
-| `⏸ manual mode on` | Asks before each edit and command | You want to see every step |
-| `⏵⏵ accept edits on` | Edits files without asking; still asks before other commands | Edits are routine |
+| `⏸ manual mode on` | Asks before edits and most commands; reads freely | You want to see every step |
+| `⏵⏵ accept edits on` | Edits files, and runs file commands like `mkdir`, `mv` and `rm` in the folder, without asking; asks before other commands | Edits are routine |
 | `⏸ plan mode on` | Reads and proposes a plan, changes nothing | Anything that matters: read the plan first |
 
 `/plan <what you want>` jumps straight into plan mode. When the plan is ready you choose **Yes, and use auto mode**,
@@ -52,7 +52,7 @@ The bottom of the screen shows the current mode. {{< kbd Shift-Tab >}} cycles th
 | `/rewind` | Go back to before a prompt: restore the files, the conversation, or both |
 | `/clear` | Start a fresh conversation (memory files stay) |
 | `/skills` | List the skills Claude can use here |
-| `/reload-skills` | Pick up a skill you just created in a new skills folder |
+| `/reload-skills` | Pick up a skill you created or changed in a skills folder that's new this session |
 | `/artifacts` | List pages you've published, and copy their links |
 | `/usage` | See how much of your plan's usage you've used |
 | `/context` | See how full the conversation is |

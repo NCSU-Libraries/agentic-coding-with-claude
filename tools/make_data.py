@@ -5,13 +5,13 @@
 Writes:
   starters/study-rooms/room_bookings.csv
   starters/cafe/cafe_sales.csv
-  instructor/answer-keys.json   (read by instructor/answer-keys.md and the slides)
+  instructor/answer-keys.json   (copy the key numbers into site/_variables.yml, the decks and the guide)
 
 Both datasets are made up. Each has one planted data problem that the answer key exposes:
   study-rooms: about 3.5% of bookings appear twice (an export glitch); booking_id should be unique.
   cafe:        one latte row has its price typed as 45.00 instead of 4.50.
 Each also has smaller mess (old room labels, a renamed menu item, zero rows on closed days) and
-one rule that lives only in the instructor's materials, never in the folder (see answer-keys.md).
+one rule that lives only in the instructor's materials, never in the folder (see instructor/facilitation-guide.md).
 Everything is seeded, so reruns produce identical files.
 """
 

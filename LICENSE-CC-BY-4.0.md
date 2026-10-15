@@ -1,7 +1,7 @@
 # Creative Commons Attribution 4.0 International (CC BY 4.0)
 
-This slide deck content (text, images, and slides) is licensed under the
-Creative Commons Attribution 4.0 International License.
+The teaching content in this repository (the website, slide decks, activity pages, video, data and examples) is
+licensed under the Creative Commons Attribution 4.0 International License.
 
 You are free to:
 
@@ -24,7 +24,7 @@ Full license text:
 
 Notes:
 
-- This license applies to the slide content. Code (e.g., build scripts, workflows)
+- This license applies to the teaching content. Code (e.g., build scripts, workflows)
   may be licensed separately (e.g., MIT) in `LICENSE`.
 - Logos, trademarks, and third-party images are excluded from this license and
   remain the property of their respective owners.

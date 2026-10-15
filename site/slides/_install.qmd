@@ -22,28 +22,35 @@ Open **PowerShell**: Start, type "PowerShell"
 :::
 :::
 
-**No progress bar.** It's working; give it a minute. When it's done, **open a new terminal window.**
+**No progress bar.** It's working; give it a minute. When it's done, read the end for **Setup notes** (next slide),
+then **open a new terminal window.**
 
 ## Check, then sign in
 
 ::: {.two-col .even}
 ::: {}
-<div class="type shell">claude --version</div>
+<div class="type shell">claude &#45;&#45;version</div>
 
 A version number, like `2.1.299 (Claude Code)`
 
 <div class="type shell">claude</div>
 
-Pick a text style, sign in in the browser, come back. Type `/exit` to leave.
+Pick a text style, sign in through the browser, come back. Asked to trust your home folder? **No, exit**: you're
+signed in.
 :::
 
 ::: {}
 | If you see | Do |
 |---|---|
-| `command not found` or `not recognized` | Open a **new** terminal. Still stuck: `claude doctor` |
+| `command not found` or `not recognized` | Run the fix under **Setup notes** in the install output, then open a **new** terminal |
 | Your plan doesn't include Claude Code | Free plan: pair up today |
 | Mac offers "command line developer tools" | **Not Now** is fine |
 :::
+:::
+
+::: {.muted style="margin-top:14px"}
+Mac PATH fix: `echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc && source ~/.zshrc`. Windows: see the
+Setup page.
 :::
 
 ## A 60-second tour

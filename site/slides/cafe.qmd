@@ -4,6 +4,7 @@ subtitle: "Data Science Special Topics · NC State University Libraries"
 date: 2026-10-15
 date-format: long
 rainbow-shot: cafe-rainbow.png
+other-activity: Study-room bookings
 format:
   revealjs:
     theme: [default, ../theme/ncsu.scss, ../theme/slides.scss]
@@ -25,7 +26,7 @@ format:
 
 ## Get the starter folder
 
-1. Materials page → download **cafe.zip** → unzip it to your **Desktop**
+1. Materials page → **cafe.zip** → unzip it to your **Desktop**
 2. Go into the folder and start Claude Code:
 
 ::: {.cards .two}
@@ -38,14 +39,12 @@ format:
 ::: {.card}
 [Windows]{.card-title}
 
-<div class="type shell">cd $HOME\Desktop\cafe<br>claude</div>
-
-Not found? Try `$HOME\OneDrive\Desktop\cafe`
+<div class="type shell">cd $HOME&#92;Desktop&#92;cafe<br>claude</div>
 :::
 :::
 
-3. *"Do you trust the files in this folder?"* → **Yes**. Claude can read and change everything in it, so never start
-   it in your home folder.
+3. Not found? Type `cd` and a space, drag the folder onto the terminal, press Enter
+4. *"Quick safety check"* → **Yes, I trust this folder**. Never start Claude in your home folder
 
 # The loop, for real {.divider background-color="#CC0000"}
 
@@ -79,8 +78,9 @@ You have a year of register data, `cafe_sales.csv`, and Claude Code.
 
 <div class="type lg">What's in this folder? Give me a quick summary of the data. Don't change anything yet.</div>
 
-- Watch it **open the files itself**: `Read(README.md)`, `Bash(wc -l cafe_sales.csv)`
+- Watch it **open the files itself**, and run commands like `Bash(wc -l cafe_sales.csv)`
 - A chatbot would have asked you to paste them in
+- Copy every prompt from **Today's activity** on the materials page
 
 [Read its summary. What looks odd in the data?]{.pill .dark}
 
@@ -99,6 +99,7 @@ Claude can't see this note, and the prompt won't mention it. **On purpose.**
 - The mode line says `⏸ plan mode on`: it reads, may ask, then **proposes**
 - **It asks for the dates?** Answer from the note.
 - **It guesses them from the busiest weeks?** Catch it: that makes "exam weeks are busier" true by definition.
+- **Pairs:** the checker reads the plan against the note
 
 ## Catch it before any code exists
 
@@ -127,7 +128,7 @@ The café's two busiest weeks were a **career fair** and **homecoming**, not exa
 ## Hands up
 
 - Whose Claude **asked** for the exam dates?
-- Whose planned to **guess** them?
+- Whose Claude planned to **guess** them?
 - Whose plan already fixed the **$45.00 latte**?
 
 ::: {.statement style="margin-top:34px"}
@@ -139,15 +140,17 @@ Same prompt, thirty laptops, different behavior. *That's why you read the plan.*
 ::: {.two-col}
 ::: {}
 - Approve the first edit or two. **Read what it writes.**
-- Then <kbd>Shift</kbd>+<kbd>Tab</kbd> until the mode line says `⏵⏵ auto mode on`
+- Then **Yes, and switch to auto mode**, or <kbd>Shift</kbd>+<kbd>Tab</kbd> until the mode line says `⏵⏵ auto mode on`
+  (Windows: <kbd>Alt</kbd>+<kbd>M</kbd>)
 - <kbd>Esc</kbd> any time to stop and redirect
+- It takes a while. **Don't type the next prompt until it's done**
 :::
 
 ::: {}
 | Mode | Claude… |
 |---|---|
-| `⏸ manual` | asks before every edit and command |
-| `⏵⏵ accept edits` | edits freely; asks before commands |
+| `⏸ manual` | asks before edits and most commands |
+| `⏵⏵ accept edits` | edits, plus file commands like `mv` and `rm`; asks before others |
 | `⏸ plan` | proposes; changes nothing |
 | `⏵⏵ auto` (default) | acts; a safety check reviews each action |
 :::
@@ -163,7 +166,7 @@ Same prompt, thirty laptops, different behavior. *That's why you read the plan.*
 
 <div class="type">! open dashboard.html</div>
 
-[Windows: `! start dashboard.html`. Or just ask Claude to open it.]{.muted}
+[Windows: `! start dashboard.html`. Or just ask Claude to open it. Still building? Let it finish first.]{.muted}
 
 ![](../images/screens/cafe-dashboard.png){.shot height="430" fig-alt="A café dashboard built in a rehearsal run"}
 
@@ -189,6 +192,7 @@ A dashboard that **looks** right isn't one that **is** right. The manager knows 
 |---|---|
 | **$145,205.25** | The $45.00 latte corrected to $4.50 ✓ |
 | $148,769.25 | The $45.00 latte on Sep 16 counted as rung up: $3,564 too high |
+| $144,809.25 | The latte row dropped instead of corrected: $396 too low |
 
 ::: {.muted style="margin-top:18px"}
 Something on the page looks off, like one day towering over the rest? Screenshot it to the clipboard (Mac

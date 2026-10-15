@@ -66,7 +66,29 @@ The installer **shows no progress while it downloads**. Give it a minute.
 
 ## 3. Check it worked
 
-**Close the terminal and open a new one** (so it finds the new command), then run:
+**Read the end of the installer's output.** If it shows **Setup notes** saying the install folder isn't in your PATH,
+your terminal can't find `claude` yet. Run the fix it prints there, or this one:
+
+::: {.panel-tabset}
+### Mac
+
+::: {.prompt .prompt-shell}
+```bash
+echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc && source ~/.zshrc
+```
+:::
+
+### Windows (PowerShell)
+
+::: {.prompt .prompt-shell}
+```powershell
+$currentPath = [Environment]::GetEnvironmentVariable('PATH', 'User')
+[Environment]::SetEnvironmentVariable('PATH', "$currentPath;$env:USERPROFILE\.local\bin", 'User')
+```
+:::
+:::
+
+Then **close the terminal and open a new one**, and run:
 
 ::: {.prompt .prompt-shell}
 ```bash
@@ -79,15 +101,18 @@ You should see a version number, like `2.1.299 (Claude Code)`.
 ## 4. Sign in
 
 Run `claude`. The first time, it asks you to pick a text style and sign in. Choose your Claude account, finish
-signing in in the browser window that opens, and come back to the terminal. Type `/exit` to leave for now.
+signing in through the browser window that opens, and come back to the terminal. If it then asks whether you trust
+this folder, choose **No, exit**: it's your home folder, and you're already signed in. Otherwise, type `/exit` to
+leave for now.
 
 ## If something goes wrong
 
 | What you see | What to do |
 | --- | --- |
-| `command not found: claude` or `'claude' is not recognized` | Close the terminal and open a new one. Still missing? Run the install line again, then see [Fix your PATH](https://code.claude.com/docs/en/troubleshoot-install). |
+| `command not found: claude` or `'claude' is not recognized` | Run the PATH fix in [step 3](#check-it-worked), then open a new terminal. Still missing? See [Fix your PATH](https://code.claude.com/docs/en/troubleshoot-install#verify-your-path). |
 | The install line fails (`403`, `syntax error near unexpected token '<'`) | Your network may be blocking the download. Try another network, or see [Troubleshoot installation](https://code.claude.com/docs/en/troubleshoot-install#find-your-error). |
 | Signing in says your plan doesn't include Claude Code | You're on the free plan. Watch or pair up today; upgrading is your call. |
+| Claude says "You've hit your Opus limit" | Type `/model sonnet` and carry on. |
 | A window offers to install "command line developer tools" (Mac) | Claude tried a tool your Mac doesn't have yet. **Not Now** is fine for today; **Install** takes 5–10 minutes. |
 | Anything else | Run `claude doctor` in the terminal. It checks your install and suggests fixes. Inside Claude Code, `/doctor` can fix some problems for you. |
 
@@ -105,7 +130,7 @@ Download **one** of these and unzip it to your Desktop:
 - [study-rooms.zip](downloads/study-rooms.zip): a campus library's study-room bookings
 - [cafe.zip](downloads/cafe.zip): a campus café's daily sales
 
-We'll tell you which one we're using live; the other works on your own afterward. Both hold made-up data.
+We'll use **{{< var live.name >}}** live; the other works on your own afterward. Both hold made-up data.
 
 <p class="small-muted">Checked against Claude Code {{< var checked.version >}} on {{< var checked.date >}}.
 Claude Code changes often; if a screen looks different, the

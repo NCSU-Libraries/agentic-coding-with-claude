@@ -14,7 +14,7 @@ Look at it. Enjoy it. Then:
 :::
 :::
 
-Pick the message before the rainbow → **restore the code**. Reload. (Or <kbd>Esc</kbd> <kbd>Esc</kbd> on an empty prompt.)
+Pick **the rainbow prompt itself** → **Restore code**. Reload. (Or <kbd>Esc</kbd> <kbd>Esc</kbd> on an empty prompt.)
 
 ::: {.card .red style="margin-top:6px"}
 **Rewind restores what Claude edited. It can't undo shell commands** like deleting (`rm`) or moving (`mv`) files.
@@ -61,4 +61,4 @@ Only data you're allowed to share with an AI service. When in doubt, don't.
 
 Give it a finish line it can prove:
 
-<div class="type"><span class="cmd">/goal</span> the page works when I double-click it and every button does something. Stop after 5 turns.</div>
+<div class="type"><span class="cmd">/goal</span> every button on the page has code behind it that visibly changes the page, and the page needs no other files. Prove it from the code. Stop after 5 turns.</div>
