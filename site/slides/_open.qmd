@@ -24,6 +24,20 @@ Pair with a neighbor. You'll be the one who checks the agent's work.
 :::
 :::
 
+## Data Science Services {.dss background-image="../images/dss/dss-services.png" background-size="contain" background-color="#FFFFFF" data-state="dss-slide"}
+
+[Our services: consulting, workshops and instruction, specialized spaces. What we do: finding data, wrangling data, analyzing data, visualization, geographic information systems (GIS), software access.]{.visually-hidden}
+
+## Who we are {.dss .dss-team .nostretch data-state="dss-slide"}
+
+![](../images/dss/dss-team.png){fig-alt="Data Science Services, who we are: Mara Blake, Head, Data Science Services; Shannon Ricci, Associate Head, Data Science Services; Jeff Essic, Lead Librarian for GIS; Alp Tezbasaran, Data Science Librarian; Selene Schmittling, Data Science Librarian; Bin Liu, Data Science Librarian; Ashley Pearson, University Library Specialist"}
+
+Our team comes from a variety of academic backgrounds, including nuclear engineering, electrical engineering, industrial and environmental engineering, marine ecology, information science, natural resources, business administration, and geographic information sciences.
+
+## How to contact us {.dss background-image="../images/dss/dss-contact.png" background-size="contain" background-color="#FFFFFF" data-state="dss-slide"}
+
+[How to contact us: go.ncsu.edu/getdatahelp. Email us, book a 30-minute appointment with a Data Science Consultant, or reserve a workstation in the DXL or Dataspace. All communication with the program is through getdatahelp@ncsu.edu.]{.visually-hidden}
+
 ## Today's finish line
 
 <ul class="finish">

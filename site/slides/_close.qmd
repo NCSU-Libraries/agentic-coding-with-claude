@@ -50,3 +50,11 @@
 :::
 
 ## Thank you {.thank-you-slide}
+
+## Tell us how we did
+
+::: {style="text-align:center"}
+[go.ncsu.edu/dss-workshop-eval](https://go.ncsu.edu/dss-workshop-eval){style="font-size:1.5em;font-weight:800"}
+
+![](../images/dss/qr-eval.png){.qr .qr-big fig-alt="QR code for the workshop evaluation, go.ncsu.edu/dss-workshop-eval"}
+:::
