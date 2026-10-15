@@ -1,0 +1,301 @@
+---
+title: "Activity: study-room bookings"
+subtitle: "Turn a messy booking export into a dashboard your supervisor can trust. About 45 minutes, plus 10 to make it yours."
+---
+
+You work at a campus library. Your supervisor wants a one-page dashboard about study-room bookings for the annual
+report: how many bookings, when rooms are busiest, and which rooms people want. You have the booking system's
+export, and you have Claude Code.
+
+You'll go around the agent loop once: **read → plan → act → check**. Then you'll make the result stick with memory
+and a skill, undo a bad change, and share what you built. The data is synthetic.
+
+::: {.callout-note collapse="false"}
+## Your finish line
+
+You're done when you have all of these. They're also on the [start page](../index.qmd#what-youll-leave-with),
+where you can tick them off.
+
+- `dashboard.html` opens in your browser and reports **fiscal years**
+- Its FY2026 total matches the **official count**
+- `CLAUDE.md` holds your reporting rule, and Claude follows it after `/clear`
+- `/house-style` gives a page the NC State look
+- You have a link to share (Pro plan or higher), or a screenshot
+:::
+
+## Before you start
+
+1. Install Claude Code and sign in: see [Set up](../setup.qmd).
+2. Download [study-rooms.zip](../downloads/study-rooms.zip) and unzip it to your Desktop. You should have a folder
+   called `study-rooms` holding `README.md` and `room_bookings.csv`.
+3. Open a terminal, go into the folder, and start Claude Code:
+
+::: {.panel-tabset}
+### Mac
+
+::: {.prompt .prompt-shell}
+```bash
+cd ~/Desktop/study-rooms
+claude
+```
+:::
+
+### Windows
+
+::: {.prompt .prompt-shell}
+```powershell
+cd $HOME\Desktop\study-rooms
+claude
+```
+:::
+
+If PowerShell says the path doesn't exist, your Desktop is probably in OneDrive: try
+`cd $HOME\OneDrive\Desktop\study-rooms`.
+:::
+
+4. Claude Code asks whether you trust the files in this folder. You do: they're the ones you just unzipped. Choose
+   yes.
+
+::: {.callout-warning}
+## Work in this folder only
+
+Claude Code can read and change everything in the folder you start it in. Starting it in your home folder or
+Desktop gives it far more reach than this task needs.
+:::
+
+## <span class="step-badge">1</span> Read
+
+Ask what's there before asking for anything else.
+
+::: {.prompt}
+```text
+What's in this folder? Give me a quick summary of the data. Don't change anything yet.
+```
+:::
+
+::: {.watch}
+Claude opens the files itself. A chatbot would have asked you to paste them in. Each step it takes shows as a line
+like `Read(README.md)` or `Bash(wc -l room_bookings.csv)`.
+:::
+
+Read its summary closely. It may point out problems in the data. **Note what it found**; you'll want it later.
+
+## <span class="step-badge">2</span> Plan
+
+Your supervisor sent you this note this morning:
+
+::: {.note-card}
+<span class="note-from">From your supervisor</span>
+
+Quick reminder for the dashboard: everything we report uses the **fiscal year, July 1 to June 30**, named for the
+year it ends. FY2026 = July 1, 2025 to June 30, 2026.
+:::
+
+Claude can't see the note, and the prompt below doesn't mention it. That's on purpose. **Predict first:** will
+Claude ask you what "year" means, or assume?
+
+Now ask for the dashboard in plan mode, so Claude proposes before it builds:
+
+::: {.prompt}
+```text
+/plan Build a one-page dashboard, dashboard.html, for my supervisor: total bookings per year, the busiest days and hours, and the most popular rooms. Make it a single file I can open by double-clicking.
+```
+:::
+
+The mode line at the bottom now reads `⏸ plan mode on`. Claude explores, may ask you a question or two, then shows a
+plan and asks how to proceed. **Don't approve it yet.**
+
+- **If it asks which kind of year:** answer from the note. That's the agent doing its job, and you having the answer.
+- **If it doesn't ask:** read the plan. If it counts **calendar years** (2024, 2025, 2026), it made a reasonable
+  assumption that's wrong for your office. It couldn't know; the rule isn't in the data.
+
+To fix a wrong assumption before any code exists, choose **No, keep planning**, then type:
+
+::: {.prompt}
+```text
+We report by fiscal year: July 1 to June 30, named for the year it ends (FY2026 is July 2025 to June 2026). Use fiscal years.
+```
+:::
+
+When the new plan uses fiscal years, and covers any data problems from step 1 the way you want, choose
+**Yes, manually approve edits**.
+
+::: {.watch}
+In our rehearsals Claude usually asked which year to use, but if you just said "go," its default was calendar years
+every time. Don't count on being asked. In the default auto mode, Claude is built to keep working rather than stop
+for questions, so plan mode is where you get to catch an assumption.
+:::
+
+## <span class="step-badge">3</span> Act
+
+In manual mode, Claude asks before each change. Approve the first edit or two and look at what it's writing.
+
+Then press {{< kbd Shift-Tab >}} until the mode line reads `⏵⏵ auto mode on`, and let it finish. A separate safety
+check still reviews each action. Press {{< kbd Esc >}} at any point to stop it and redirect.
+
+When it's done, open the dashboard. Ask Claude to open it, or:
+
+::: {.panel-tabset}
+### Mac
+
+::: {.prompt}
+```text
+! open dashboard.html
+```
+:::
+
+### Windows
+
+::: {.prompt}
+```text
+! start dashboard.html
+```
+:::
+:::
+
+The `!` runs a command yourself without leaving Claude Code. Double-clicking the file works too.
+
+![A dashboard from a rehearsal run. Yours will look different: same prompt, different result.](../images/screens/study-rooms-dashboard.png){.shot}
+
+## <span class="step-badge">4</span> Check
+
+A dashboard that looks right isn't the same as one that is right. Your supervisor already knows one number.
+
+::: {.callout-tip collapse="true"}
+## The official count
+
+::: {.answer}
+<span class="answer-label">Official FY2026 bookings</span><span class="answer-value">{{< var key.study-rooms.fy2026 >}}</span>
+:::
+
+Does your dashboard agree?
+:::
+
+Whether it matches or not, make Claude prove it. `/goal` keeps Claude working until a condition holds, and a
+separate model checks after every turn:
+
+::: {.prompt}
+```text
+/goal dashboard.html shows FY2026 = 4,351 bookings, the official count. If it doesn't, explain why before changing anything. Prove the final number by counting the CSV yourself, and don't hard-code it. Stop after 5 turns.
+```
+:::
+
+::: {.watch}
+Why it might not match: the export lists some bookings twice. Did Claude mention that in step 1? Did the plan say
+what to do about it? The fix is to count each `booking_id` once.
+:::
+
+If something on the page looks wrong, show Claude instead of describing it. Take a screenshot to the clipboard
+({{< kbd mac=Ctrl-Shift-Cmd-4 >}} on a Mac, {{< kbd win=Win-Shift-S >}} on Windows), then paste it into your prompt
+with {{< kbd Ctrl-V >}} (Mac Terminal) or {{< kbd Alt-V >}} (Windows) and say what's off.
+
+## <span class="step-badge">5</span> Remember
+
+Claude forgets everything when a conversation ends, except what's written down. You'll write your rule in
+`CLAUDE.md`, a file Claude reads at the start of every session in this folder.
+
+::: {.prompt}
+```text
+Add our reporting rules to CLAUDE.md: we use fiscal years (July 1 to June 30, named for the year they end), and each booking_id counts once.
+```
+:::
+
+Run `/memory` to see it. You'll also see **auto memory**: notes Claude saves for itself as it works. `CLAUDE.md` is
+what *you* tell it; auto memory is what *it* learns.
+
+Now test it. `/clear` starts a fresh conversation, then ask:
+
+::: {.prompt}
+```text
+Which fiscal year had the most bookings, and how much did it grow over the year before?
+```
+:::
+
+It should answer in fiscal years without being told again: FY2026, up about {{< var key.study-rooms.growth >}}
+from FY2025.
+
+## <span class="step-badge">6</span> Make a skill
+
+A skill is a reusable set of instructions with a name. You run it as a command, and Claude can also use it on its own
+when it fits. (Skills are what Claude Code used to call custom commands.) Have Claude write one:
+
+::: {.prompt}
+```text
+Create a skill called house-style that gives any web page we make the NC State look: Wolfpack Red #CC0000 for highlights, dark gray text on white, Arial or Helvetica, a red header bar with the page title, and a footer that says "Synthetic data made for a workshop." Use it whenever you create or restyle a web page.
+```
+:::
+
+Claude writes `.claude/skills/house-style/SKILL.md`. Run it:
+
+::: {.prompt}
+```text
+/house-style dashboard.html
+```
+:::
+
+Reload the page in your browser.
+
+Now ask for something new, without mentioning the style, and watch whether Claude reaches for the skill on its own:
+
+::: {.prompt}
+```text
+Make a one-page summary for the library's dean, summary.html, with the three numbers that matter most.
+```
+:::
+
+## <span class="step-badge">7</span> Undo
+
+Everyone makes a change they regret. Make one on purpose:
+
+::: {.prompt}
+```text
+Make dashboard.html rainbow-colored, with Comic Sans everywhere.
+```
+:::
+
+Look at it. Then type `/rewind` (or press {{< kbd Esc >}} twice on an empty prompt), pick the message before the
+rainbow, and choose to restore the code. Reload: it's back.
+
+::: {.callout-warning}
+## What rewind can't undo
+
+`/rewind` restores files Claude edited with its own editing tools. It **doesn't** undo what shell commands did, such
+as deleting (`rm`) or moving (`mv`) files. For real work, keep copies or use git.
+:::
+
+## <span class="step-badge">8</span> Share
+
+::: {.prompt}
+```text
+Publish dashboard.html as an artifact.
+```
+:::
+
+Claude gives you a link to a private page on claude.ai. Open it, choose **Share**, and you can make a public link
+anyone can open. This needs a Pro, Max, Team or Enterprise plan; on a Console account, share a screenshot instead.
+`/artifacts` lists what you've published.
+
+## Make it yours
+
+You have ten minutes and an agent. Pick one:
+
+- **Improve the dashboard:** a filter by who booked, a dark mode, a button that downloads the numbers.
+- **Build something you'd use:** a study timer in NC State colors, a flashcard quiz from your own notes, a
+  weekly planner. Start in a new empty folder.
+- **Try your own data**, as long as it's data you're allowed to share with an AI service.
+
+Give it a finish line it can check, such as
+`/goal the page works when I double-click it and every button does something. Stop after 5 turns.`
+
+## If something goes wrong
+
+| What happens | Try |
+| --- | --- |
+| Claude asks a question instead of planning | Answer it. That's the plan step working. |
+| The page opens blank | Paste a screenshot and say "this opens blank when I double-click it." |
+| Your number doesn't match and you're stuck | Ask: "List every reason the FY2026 count could differ from 4,351, and check each one." |
+| A window offers to install "command line developer tools" (Mac) | Claude tried a tool your Mac doesn't have. Choose **Not Now**; it will find another way. |
+| Claude has gone in circles twice | `/clear` and ask again, with what you learned in the first prompt. |
+| You're out of time | Download the [finished example](../downloads/study-rooms-finished.zip) and compare. |
+
+<p class="small-muted">Checked against Claude Code {{< var checked.version >}} on {{< var checked.date >}}.</p>

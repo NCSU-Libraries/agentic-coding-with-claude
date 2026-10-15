@@ -1,0 +1,97 @@
+---
+pagetitle: "Agentic Coding with Claude"
+toc: false
+title-block-style: none
+---
+
+::: {.hero}
+<p class="small-muted" style="color:#BDBDBD;margin:0 0 .3rem">{{< var event.series >}} · NC State University Libraries</p>
+
+# Agentic Coding with Claude
+
+<p class="when">{{< var event.date >}}, {{< var event.time >}} · {{< var event.room >}}</p>
+
+AI agents can read your files, run code and fix their own mistakes. The skill now is setting one up, steering it,
+and checking its work. In 90 minutes you'll install Claude Code, hand it a messy spreadsheet, and watch it plan,
+build and check a dashboard, including the moment it goes wrong and how you catch it.
+:::
+
+## What you'll leave with
+
+::: {.finish-line}
+<ul id="finish-line">
+<li><label><input type="checkbox" data-k="install"> Claude Code installed and signed in on your laptop</label></li>
+<li><label><input type="checkbox" data-k="dash"> A working dashboard, built by Claude from a messy spreadsheet</label></li>
+<li><label><input type="checkbox" data-k="catch"> One wrong assumption caught in the plan, before any code was written</label></li>
+<li><label><input type="checkbox" data-k="check"> The dashboard's key number checked against the official answer</label></li>
+<li><label><input type="checkbox" data-k="memory"> A <code>CLAUDE.md</code> that remembers your rule, and a <code>/house-style</code> skill you can reuse</label></li>
+<li><label><input type="checkbox" data-k="share"> A link to your dashboard you can share (Pro plan or higher)</label></li>
+<li><label><input type="checkbox" data-k="own"> Something of your own, built in the last ten minutes</label></li>
+</ul>
+:::
+
+<script>
+(() => {
+  const boxes = document.querySelectorAll('#finish-line input[type=checkbox]');
+  let saved = {};
+  try { saved = JSON.parse(localStorage.getItem('finish-line') || '{}'); } catch (e) {}
+  boxes.forEach((box) => {
+    box.checked = !!saved[box.dataset.k];
+    box.addEventListener('change', () => {
+      saved[box.dataset.k] = box.checked;
+      try { localStorage.setItem('finish-line', JSON.stringify(saved)); } catch (e) {}
+    });
+  });
+})();
+</script>
+
+## Before you come
+
+1. **Check your plan.** Following along needs a Claude **Pro, Max, Team or Enterprise** plan, or a Console
+   account. The free plan doesn't include Claude Code. No paid plan? Come anyway: you can watch, or pair up and be
+   the one who checks the agent's work.
+2. **Install Claude Code** with the [setup guide](setup.qmd). It takes about 10 minutes, and we'll do it together at
+   the start too.
+3. **Bring a laptop** (Mac or Windows) and its charger.
+
+## The materials
+
+::: {.cards}
+<a class="card-link" href="{{< var live.slides >}}"><span class="card-title">Slides</span><span class="card-text">The live session, step by step</span></a>
+<a class="card-link" href="{{< var live.activity >}}"><span class="card-title">Today's activity</span><span class="card-text">{{< var live.name >}}: every prompt, ready to copy</span></a>
+<a class="card-link" href="{{< var self-guided.activity >}}"><span class="card-title">On your own</span><span class="card-text">{{< var self-guided.name >}}: a second activity to try after the session</span></a>
+<a class="card-link" href="cheatsheet.qmd"><span class="card-title">Cheat sheet</span><span class="card-text">Commands, keys, modes and habits on one page</span></a>
+<a class="card-link" href="examples.qmd"><span class="card-title">Finished examples</span><span class="card-text">What the activities produce, to compare with yours</span></a>
+<a class="card-link" href="setup.qmd"><span class="card-title">Setup guide</span><span class="card-text">Install, sign in, and fix common problems</span></a>
+:::
+
+## Watch the whole activity in three minutes
+
+<video controls preload="metadata" playsinline style="width:100%;border-radius:10px;box-shadow:0 10px 28px rgba(0,0,0,.12)" poster="video/tour-poster.jpg">
+<source src="video/tour.mp4" type="video/mp4">
+</video>
+
+<p class="small-muted">A captioned walkthrough of the study-room activity, built from a rehearsal run. The terminal
+screens are simplified re-creations; the dashboards are the real output.</p>
+
+## Today's plan
+
+| Time | What we'll do |
+| --- | --- |
+| 2:00 | What makes an agent different from a chatbot |
+| 2:08 | Install Claude Code together, and open the starter folder |
+| 2:23 | The loop on a real task: **read**, **plan**, **act**, **check** |
+| 2:50 | Make it stick: project memory and a skill of your own |
+| 3:05 | Undo a bad change, and share your dashboard |
+| 3:13 | Make it yours: build something you want |
+| 3:23 | Habits for using agents responsibly |
+
+## Get help
+
+- Questions about the workshop: [{{< var email >}}](mailto:{{< var email >}})
+- Help with access, accounts or setup, before or after: [go.ncsu.edu/getdatahelp]({{< var help >}})
+- The official [Claude Code docs](https://code.claude.com/docs/en/overview)
+
+<p class="small-muted">All data in these activities is synthetic, made up for teaching. Content is licensed
+CC BY 4.0, and code MIT. Materials checked against Claude Code {{< var checked.version >}} on
+{{< var checked.date >}}.</p>

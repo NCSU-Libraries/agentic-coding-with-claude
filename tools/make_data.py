@@ -231,7 +231,16 @@ MENU = [
     ("Bagel", "Bakery", 2.75, 2.75, 30, ""),
     ("Breakfast Sandwich", "Food", 6.50, 6.50, 26, ""),
 ]
-EXAM_LIFT = {"Coffee": 1.45, "Tea": 1.4, "Other drinks": 1.2, "Bakery": 1.2, "Food": 1.15}
+EXAM_LIFT = {"Coffee": 1.3, "Tea": 1.25, "Other drinks": 1.1, "Bakery": 1.1, "Food": 1.05}
+# Busy days that aren't exams. The café sits between the career center and the stadium, so events bring crowds
+# too. They keep the exam weeks from being the only bumps in the data: dates read off the sales spikes come out
+# wrong, and only the manager's calendar gets them right.
+EVENTS = [
+    ("2025-09-23", "2025-09-24", 1.35),  # fall career fair
+    ("2025-10-20", "2025-10-24", 1.4),  # homecoming week
+    ("2026-02-10", "2026-02-12", 1.35),  # spring career and internship fair
+    ("2026-04-11", "2026-04-11", 2.2),  # admitted students day (a Saturday)
+]
 
 
 def high_temp(d: date) -> int:
@@ -265,6 +274,7 @@ def make_cafe() -> pd.DataFrame:
                 lam = base * CAFE_DOW[d.weekday()] * temp_lift(kind, t)
                 lam *= EXAM_LIFT[cat] if exam else 1.0
                 lam *= 1.15 if first_week else 1.0
+                lam *= next((m for a, b, m in EVENTS if in_any(d, [(a, b)])), 1.0)
                 units = int(rng.poisson(lam))
             label = "Cold Brew Coffee" if (name == "Cold Brew" and d >= RENAME) else name
             if (d, name) == TYPO[:2]:
@@ -298,6 +308,11 @@ def cafe_key(df: pd.DataFrame) -> dict:
         return {"exam_avg": round(float(exam_avg), 2), "other_avg": round(float(other_avg), 2),
                 "lift_pct": round(100 * (exam_avg / other_avg - 1), 1)}
 
+    # The weeks a reader would pick out as "busy" from the sales alone (Mon-Fri, open days, mean daily sales).
+    weekday_open = daily[is_open & dates.map(lambda d: d.weekday() < 5)]
+    week_start = pd.Series([date.fromisoformat(s) - timedelta(date.fromisoformat(s).weekday()) for s in weekday_open.index],
+                           index=weekday_open.index)
+    busiest_weeks = weekday_open.groupby(week_start).mean().sort_values(ascending=False).head(6)
     raw_daily = df.groupby("date")["revenue"].sum()
     items = fixed.assign(item=fixed["item"].replace({"Cold Brew Coffee": "Cold Brew"}))
     by_item = items.groupby("item")["revenue"].sum().sort_values(ascending=False)
@@ -321,6 +336,9 @@ def cafe_key(df: pd.DataFrame) -> dict:
         "best_seller_revenue": {k: round(float(v), 2) for k, v in by_item.head(3).items()},
         "best_seller_units": items.groupby("item")["units_sold"].sum().sort_values(ascending=False).head(1).index[0],
         "renamed_item_rows": int((df["item"] == "Cold Brew Coffee").sum()),
+        "busiest_weeks_by_sales": {f"week of {k.isoformat()}" + (" (exam)" if in_any(k, EXAM_WEEKS) or
+                                   in_any(k + timedelta(1), EXAM_WEEKS) else ""): round(float(v), 2)
+                                   for k, v in busiest_weeks.items()},
         "busiest_open_day": daily.idxmax(),
         "busiest_open_day_total": round(float(daily.max()), 2),
     }

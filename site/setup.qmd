@@ -1,0 +1,112 @@
+---
+title: "Set up Claude Code"
+subtitle: "About 10 minutes. Do it before the session if you can; we'll also do it together at the start."
+---
+
+::: {.callout-important}
+## You need a paid Claude plan to follow along
+
+Claude Code works with a **Pro, Max, Team, or Enterprise** plan, or a **Console** (API) account. **The free Claude
+plan does not include Claude Code**, and NC State doesn't have a campus-wide license. We can't create accounts during
+the session.
+
+No paid plan? Come anyway. You can watch, or pair with a neighbor and be the person who checks the agent's work,
+which is half the skill. Not sure what you have? Ask at [go.ncsu.edu/getdatahelp](https://go.ncsu.edu/getdatahelp)
+before the session.
+:::
+
+## 1. Open a terminal
+
+A terminal is a window where you type commands instead of clicking.
+
+::: {.panel-tabset}
+### Mac
+
+Press {{< kbd mac=Cmd-Space >}}, type **Terminal**, and press {{< kbd Enter >}}.
+
+### Windows
+
+Press the {{< kbd win=Win >}} key, type **PowerShell**, and press {{< kbd Enter >}}. Your prompt starts with `PS C:\`.
+:::
+
+New to terminals? Anthropic's [terminal guide for new users](https://code.claude.com/docs/en/terminal-guide) walks
+through it with pictures.
+
+## 2. Install
+
+Copy the line for your computer, paste it into the terminal, and press {{< kbd Enter >}}.
+
+::: {.panel-tabset}
+### Mac
+
+::: {.prompt .prompt-shell}
+```bash
+curl -fsSL https://claude.ai/install.sh | bash
+```
+:::
+
+### Windows (PowerShell)
+
+::: {.prompt .prompt-shell}
+```powershell
+irm https://claude.ai/install.ps1 | iex
+```
+:::
+
+If you see `'irm' is not recognized`, you're in Command Prompt, not PowerShell. Use this line instead:
+
+::: {.prompt .prompt-shell}
+```bat
+curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
+```
+:::
+:::
+
+The installer **shows no progress while it downloads**. Give it a minute.
+
+## 3. Check it worked
+
+**Close the terminal and open a new one** (so it finds the new command), then run:
+
+::: {.prompt .prompt-shell}
+```bash
+claude --version
+```
+:::
+
+You should see a version number, like `2.1.299 (Claude Code)`.
+
+## 4. Sign in
+
+Run `claude`. The first time, it asks you to pick a text style and sign in. Choose your Claude account, finish
+signing in in the browser window that opens, and come back to the terminal. Type `/exit` to leave for now.
+
+## If something goes wrong
+
+| What you see | What to do |
+| --- | --- |
+| `command not found: claude` or `'claude' is not recognized` | Close the terminal and open a new one. Still missing? Run the install line again, then see [Fix your PATH](https://code.claude.com/docs/en/troubleshoot-install). |
+| The install line fails (`403`, `syntax error near unexpected token '<'`) | Your network may be blocking the download. Try another network, or see [Troubleshoot installation](https://code.claude.com/docs/en/troubleshoot-install#find-your-error). |
+| Signing in says your plan doesn't include Claude Code | You're on the free plan. Watch or pair up today; upgrading is your call. |
+| A window offers to install "command line developer tools" (Mac) | Claude tried a tool your Mac doesn't have yet. **Not Now** is fine for today; **Install** takes 5–10 minutes. |
+| Anything else | Run `claude doctor` in the terminal. It checks your install and suggests fixes. Inside Claude Code, `/doctor` can fix some problems for you. |
+
+::: {.callout-tip}
+## Rather not use a terminal?
+
+The [Claude desktop app](https://claude.com/download) has a **Code** tab that runs Claude Code without one. Our
+steps are written for the terminal, but the prompts work the same way there.
+:::
+
+## Before the session: get the starter folder
+
+Download **one** of these and unzip it to your Desktop:
+
+- [study-rooms.zip](downloads/study-rooms.zip): a campus library's study-room bookings
+- [cafe.zip](downloads/cafe.zip): a campus café's daily sales
+
+We'll tell you which one we're using live; the other works on your own afterward. Both hold made-up data.
+
+<p class="small-muted">Checked against Claude Code {{< var checked.version >}} on {{< var checked.date >}}.
+Claude Code changes often; if a screen looks different, the
+<a href="https://code.claude.com/docs/en/setup">official setup page</a> wins.</p>

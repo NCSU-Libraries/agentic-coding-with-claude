@@ -1,0 +1,101 @@
+---
+title: "Cheat sheet"
+subtitle: "Everything we used today, on one page. Print it or keep it open in a tab."
+toc: false
+---
+
+## Start and stop
+
+| Do this | To |
+| --- | --- |
+| `cd` into your project folder, then `claude` | Start a session in that folder. Claude can read and change files there. |
+| `claude --version` | Check it's installed |
+| `claude doctor` | Check your install and settings when something's off |
+| `/exit`, or {{< kbd Ctrl-D >}} twice | Leave the session |
+| `claude --continue` | Pick up your last session in this folder |
+
+## Keys
+
+| Key | What it does |
+| --- | --- |
+| {{< kbd Esc >}} | Stop Claude mid-step, keeping the work so far, so you can redirect it |
+| {{< kbd Esc >}} {{< kbd Esc >}} (empty input) | Open the rewind menu: go back to an earlier point |
+| {{< kbd Shift-Tab >}} | Change the permission mode (see below) |
+| {{< kbd Ctrl-V >}} (Mac Terminal), {{< kbd Cmd-V >}} (iTerm2), {{< kbd Alt-V >}} (Windows) | Paste a screenshot into your prompt |
+| {{< kbd Ctrl-G >}} | Open the plan, or your prompt, in a text editor to edit it |
+| {{< kbd Ctrl-O >}} | Show the full details of what Claude did |
+| `!` at the start | Run a shell command yourself, such as `! open dashboard.html` |
+| `@` | Point at a file, such as `@README.md` |
+
+## Permission modes
+
+The bottom of the screen shows the current mode. {{< kbd Shift-Tab >}} cycles through them.
+
+| Mode | Claude… | Use it when |
+| --- | --- | --- |
+| `⏵⏵ auto mode on` (the default) | Acts without asking; a separate safety check reviews each action and blocks risky ones | You trust the direction of the task |
+| `⏸ manual mode on` | Asks before each edit and command | You want to see every step |
+| `⏵⏵ accept edits on` | Edits files without asking; still asks before other commands | Edits are routine |
+| `⏸ plan mode on` | Reads and proposes a plan, changes nothing | Anything that matters: read the plan first |
+
+`/plan <what you want>` jumps straight into plan mode. When the plan is ready you choose **Yes, and use auto mode**,
+**Yes, manually approve edits**, or **No, keep planning** (then type what to change).
+
+## Commands we used
+
+| Command | What it does |
+| --- | --- |
+| `/plan <task>` | Plan first, change nothing until you approve |
+| `/goal <condition>` | Keep working until the condition is true; a separate model checks after each turn. Give it a finish line Claude can prove, and a limit like "stop after 5 turns" |
+| `/memory` | See and edit what Claude remembers: your `CLAUDE.md` files and its own notes |
+| `/init` | Draft a `CLAUDE.md` for this folder |
+| `/rewind` | Go back to before a prompt: restore the files, the conversation, or both |
+| `/clear` | Start a fresh conversation (memory files stay) |
+| `/skills` | List the skills Claude can use here |
+| `/artifacts` | List pages you've published, and copy their links |
+| `/usage` | See how much of your plan's usage you've used |
+| `/context` | See how full the conversation is |
+| `/btw <question>` | Ask a side question without derailing the work |
+| `/help`, `/powerup` | Help, and short interactive lessons on features |
+| `/doctor` | Diagnose and fix setup problems |
+
+## Memory: two kinds
+
+| | You write it | Claude writes it |
+| --- | --- | --- |
+| **What** | `CLAUDE.md` in your project folder | Auto memory: notes Claude saves as it learns your project |
+| **How** | Ask: *"Add this to CLAUDE.md: …"*, or run `/init` for a first draft | On by default; you'll see "Saved 1 memory" |
+| **Where** | Your folder, next to your files | `~/.claude/projects/<project>/memory/` |
+| **Good for** | Rules and facts Claude can't know: definitions, deadlines, house style | Things it figured out along the way |
+
+Keep `CLAUDE.md` short. Every line is read at the start of every session.
+
+## Skills (also called custom commands)
+
+A skill is a folder with a `SKILL.md` file of instructions. It becomes a command named after the folder.
+
+```text
+.claude/skills/house-style/SKILL.md   →   /house-style
+```
+
+- **You** can run it by typing `/house-style`.
+- **Claude** can also pick it up on its own when its description matches what you asked for.
+- Put it in your project's `.claude/skills/` to keep it with the project, or in `~/.claude/skills/` to use it everywhere.
+- The old `.claude/commands/name.md` files still work and do the same thing.
+
+The easiest way to make one: ask Claude. *"Create a skill called … that …"*
+
+## Habits worth keeping
+
+1. **Plan before anything that matters.** Read the plan for assumptions you didn't make.
+2. **Write down what it can't know**: definitions, dates, rules, all in `CLAUDE.md`.
+3. **Give it a way to check its work**: a number you trust, a test, a screenshot, a `/goal`.
+4. **Check one number yourself.** Looking right isn't being right.
+5. **Know your undo.** `/rewind` restores Claude's file edits but not what shell commands did (deleting or moving
+   files). Work on copies, and use git for anything real.
+6. **Mind the data.** Only give it data you're allowed to share with an AI service, and follow NC State's rules for
+   sensitive data.
+7. **Start fresh between tasks** with `/clear`. Long, tangled sessions get worse, not better.
+
+<p class="small-muted">Checked against Claude Code {{< var checked.version >}} on {{< var checked.date >}}. The
+<a href="https://code.claude.com/docs/en/overview">official docs</a> are the latest word.</p>

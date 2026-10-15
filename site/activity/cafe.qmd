@@ -1,0 +1,290 @@
+---
+title: "Activity: campus café sales"
+subtitle: "Turn a year of register data into a dashboard the café manager can trust. About 45 minutes, plus 10 to make it yours."
+---
+
+You help run a campus café. The manager wants a one-page dashboard: how sales moved over the year, what sells best,
+and whether exam weeks really are as busy as they feel. You have a year of the register's daily sales, and you have
+Claude Code.
+
+You'll go around the agent loop once: **read → plan → act → check**. Then you'll make the result stick with memory
+and a skill, undo a bad change, and share what you built. The data is synthetic.
+
+::: {.callout-note collapse="false"}
+## Your finish line
+
+You're done when you have all of these:
+
+- `dashboard.html` opens in your browser and compares exam weeks, **using the café's real exam dates**
+- Its fall-semester total matches the **official figure**
+- `CLAUDE.md` holds what you learned, and Claude uses it after `/clear`
+- `/house-style` gives a page the NC State look
+- You have a link to share (Pro plan or higher), or a screenshot
+:::
+
+## Before you start
+
+1. Install Claude Code and sign in: see [Set up](../setup.qmd).
+2. Download [cafe.zip](../downloads/cafe.zip) and unzip it to your Desktop. You should have a folder called `cafe`
+   holding `README.md` and `cafe_sales.csv`.
+3. Open a terminal, go into the folder, and start Claude Code:
+
+::: {.panel-tabset}
+### Mac
+
+::: {.prompt .prompt-shell}
+```bash
+cd ~/Desktop/cafe
+claude
+```
+:::
+
+### Windows
+
+::: {.prompt .prompt-shell}
+```powershell
+cd $HOME\Desktop\cafe
+claude
+```
+:::
+
+If PowerShell says the path doesn't exist, your Desktop is probably in OneDrive: try `cd $HOME\OneDrive\Desktop\cafe`.
+:::
+
+4. Claude Code asks whether you trust the files in this folder. You do: they're the ones you just unzipped. Choose
+   yes.
+
+::: {.callout-warning}
+## Work in this folder only
+
+Claude Code can read and change everything in the folder you start it in. Starting it in your home folder or
+Desktop gives it far more reach than this task needs.
+:::
+
+## <span class="step-badge">1</span> Read
+
+::: {.prompt}
+```text
+What's in this folder? Give me a quick summary of the data. Don't change anything yet.
+```
+:::
+
+::: {.watch}
+Claude opens the files itself. A chatbot would have asked you to paste them in. Each step it takes shows as a line
+like `Read(README.md)` or `Bash(wc -l cafe_sales.csv)`.
+:::
+
+Read its summary closely. It will likely point out oddities: days with no sales at all, an item whose name changes,
+a price that doesn't look right. **Decide what you think about each one**; you'll see them again in the plan.
+
+## <span class="step-badge">2</span> Plan
+
+The manager sent you this note this morning:
+
+::: {.note-card}
+<span class="note-from">From the café manager</span>
+
+Exam weeks this year were **Oct 6–10** and **Dec 8–16** in the fall, and **Mar 2–6** and **Apr 28–May 7** in the
+spring. We were closed over the breaks, so those days show zero sales.
+:::
+
+Claude can't see the note, and the prompt below doesn't mention it. That's on purpose. **Predict first:** will
+Claude ask you for the exam dates, or work them out some other way?
+
+::: {.prompt}
+```text
+/plan Build a one-page dashboard, dashboard.html, for the café manager: daily sales across the year, the best-selling items, and whether exam weeks are busier. Make it a single file I can open by double-clicking.
+```
+:::
+
+The mode line at the bottom now reads `⏸ plan mode on`. Claude explores, may ask you a question or two, then shows a
+plan and asks how to proceed. **Don't approve it yet.**
+
+- **If it asks for the exam dates:** answer from the note.
+- **If it doesn't ask:** read the plan. How does it decide which weeks were exam weeks? If it plans to **guess them
+  from the busiest weeks in the sales**, catch it. Two problems: the café's busiest weeks are a career fair and
+  homecoming, not exams, and defining exam weeks by high sales would make "exam weeks are busier" true by definition.
+
+To fix a wrong assumption before any code exists, choose **No, keep planning** (or answer its question), then type:
+
+::: {.prompt}
+```text
+Exam weeks were Oct 6–10 and Dec 8–16 in the fall, and Mar 2–6 and Apr 28–May 7 in the spring. Use those exact dates, and leave days we were closed out of the averages.
+```
+:::
+
+When the plan uses those dates, and handles the oddities from step 1 the way you want, choose
+**Yes, manually approve edits**.
+
+::: {.watch}
+In our rehearsals Claude always asked for the exam dates, and it knew not to define them by the sales. But its
+fallback, if you just said "go," was to pencil in the busiest weeks or to assume finals only. Both are wrong here.
+In the default auto mode, Claude is built to keep working rather than stop for questions, so plan mode is where you
+get to catch an assumption.
+:::
+
+## <span class="step-badge">3</span> Act
+
+In manual mode, Claude asks before each change. Approve the first edit or two and look at what it's writing.
+
+Then press {{< kbd Shift-Tab >}} until the mode line reads `⏵⏵ auto mode on`, and let it finish. Press
+{{< kbd Esc >}} at any point to stop it and redirect.
+
+When it's done, open the dashboard. Ask Claude to open it, or:
+
+::: {.panel-tabset}
+### Mac
+
+::: {.prompt}
+```text
+! open dashboard.html
+```
+:::
+
+### Windows
+
+::: {.prompt}
+```text
+! start dashboard.html
+```
+:::
+:::
+
+![A dashboard from a rehearsal run. Yours will look different: same prompt, different result.](../images/screens/cafe-dashboard.png){.shot}
+
+## <span class="step-badge">4</span> Check
+
+The manager already knows one number: what the café took in over the fall semester.
+
+::: {.callout-tip collapse="true"}
+## The official figure
+
+::: {.answer}
+<span class="answer-label">Official fall sales, Aug 18 – Dec 16, 2025</span><span class="answer-value">{{< var key.cafe.fall-total >}}</span>
+:::
+
+Does your dashboard agree? If it doesn't show a fall total, ask Claude for it.
+:::
+
+Make Claude prove it:
+
+::: {.prompt}
+```text
+/goal The dashboard's fall-semester sales (Aug 18 to Dec 16, 2025) match the café's official $145,205.25. If they don't, explain why before changing anything. Prove the final number from the CSV yourself, and don't hard-code it. Stop after 5 turns.
+```
+:::
+
+::: {.watch}
+Why it might not match: one latte in September was rung up at $45.00. Did Claude flag it in step 1? Did the plan fix
+it? A figure that's off by exactly the size of one typo is the kind of thing only a known answer catches.
+:::
+
+If something on the page looks wrong, show Claude instead of describing it. Take a screenshot to the clipboard
+({{< kbd mac=Ctrl-Shift-Cmd-4 >}} on a Mac, {{< kbd win=Win-Shift-S >}} on Windows), then paste it into your prompt
+with {{< kbd Ctrl-V >}} (Mac Terminal) or {{< kbd Alt-V >}} (Windows) and say what's off.
+
+## <span class="step-badge">5</span> Remember
+
+Claude forgets everything when a conversation ends, except what's written down. Write what you learned in
+`CLAUDE.md`, a file Claude reads at the start of every session in this folder.
+
+::: {.prompt}
+```text
+Add what we learned to CLAUDE.md: the exam-week dates, that days with zero sales for every item mean we were closed, and that "Cold Brew Coffee" is the same item as "Cold Brew".
+```
+:::
+
+Run `/memory` to see it, along with **auto memory**: notes Claude saves for itself as it works. `CLAUDE.md` is what
+*you* tell it; auto memory is what *it* learns.
+
+Now test it. `/clear` starts a fresh conversation, then ask:
+
+::: {.prompt}
+```text
+How much busier were exam weeks than other weeks, per day we were open?
+```
+:::
+
+It should use your exam dates and skip the closed days without being told again.
+
+## <span class="step-badge">6</span> Make a skill
+
+A skill is a reusable set of instructions with a name. You run it as a command, and Claude can also use it on its own
+when it fits. (Skills are what Claude Code used to call custom commands.)
+
+::: {.prompt}
+```text
+Create a skill called house-style that gives any web page we make the NC State look: Wolfpack Red #CC0000 for highlights, dark gray text on white, Arial or Helvetica, a red header bar with the page title, and a footer that says "Synthetic data made for a workshop." Use it whenever you create or restyle a web page.
+```
+:::
+
+Claude writes `.claude/skills/house-style/SKILL.md`. Run it:
+
+::: {.prompt}
+```text
+/house-style dashboard.html
+```
+:::
+
+Now ask for something new without mentioning the style, and watch whether Claude reaches for the skill on its own:
+
+::: {.prompt}
+```text
+Make a flyer for the café, flyer.html, announcing longer hours during finals week.
+```
+:::
+
+## <span class="step-badge">7</span> Undo
+
+::: {.prompt}
+```text
+Make dashboard.html rainbow-colored, with Comic Sans everywhere.
+```
+:::
+
+Look at it. Then type `/rewind` (or press {{< kbd Esc >}} twice on an empty prompt), pick the message before the
+rainbow, and choose to restore the code. Reload: it's back.
+
+::: {.callout-warning}
+## What rewind can't undo
+
+`/rewind` restores files Claude edited with its own editing tools. It **doesn't** undo what shell commands did, such
+as deleting (`rm`) or moving (`mv`) files. For real work, keep copies or use git.
+:::
+
+## <span class="step-badge">8</span> Share
+
+::: {.prompt}
+```text
+Publish dashboard.html as an artifact.
+```
+:::
+
+Claude gives you a link to a private page on claude.ai. Open it, choose **Share**, and you can make a public link
+anyone can open. This needs a Pro, Max, Team or Enterprise plan; on a Console account, share a screenshot instead.
+
+## Make it yours
+
+Ten minutes, one agent. Pick one:
+
+- **Improve the dashboard:** a "sales vs. temperature" chart (do hot drinks sell more on cold days?), a dark mode, a
+  print-friendly version for the manager.
+- **Build something you'd use:** a study timer in NC State colors, a flashcard quiz from your own notes, a weekly
+  planner. Start in a new empty folder.
+- **Try your own data**, as long as it's data you're allowed to share with an AI service.
+
+Give it a finish line it can check, such as
+`/goal the page works when I double-click it and every button does something. Stop after 5 turns.`
+
+## If something goes wrong
+
+| What happens | Try |
+| --- | --- |
+| Claude asks a question instead of planning | Answer it. That's the plan step working. |
+| The page opens blank | Paste a screenshot and say "this opens blank when I double-click it." |
+| Your number doesn't match and you're stuck | Ask: "List every reason the fall total could differ from $145,205.25, and check each one." |
+| A window offers to install "command line developer tools" (Mac) | Claude tried a tool your Mac doesn't have. Choose **Not Now**; it will find another way. |
+| Claude has gone in circles twice | `/clear` and ask again, with what you learned in the first prompt. |
+| You're out of time | Download the [finished example](../downloads/cafe-finished.zip) and compare. |
+
+<p class="small-muted">Checked against Claude Code {{< var checked.version >}} on {{< var checked.date >}}.</p>

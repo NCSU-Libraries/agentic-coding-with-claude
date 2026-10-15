@@ -1,0 +1,40 @@
+# One place for facts that appear on several pages and in both decks.
+# After the live theme is chosen, change `live` and `self-guided` below; every page follows.
+
+event:
+  title: "Agentic Coding with Claude"
+  series: "Data Science Special Topics"
+  date: "Thursday, October 15, 2026"
+  time: "2:00–3:30 pm"
+  room: "South Learning Lab 3430, D. H. Hill Jr. Library"
+  page: "https://www.lib.ncsu.edu/workshops/data-science-special-topics-agentic-coding-claude/2026-10-15"
+
+site: "https://ncsu-libraries.github.io/agentic-coding-with-claude/"
+site-short: "ncsu-libraries.github.io/agentic-coding-with-claude"
+repo: "https://github.com/NCSU-Libraries/agentic-coding-with-claude"
+help: "https://go.ncsu.edu/getdatahelp"
+email: "lib-datascienceservices@ncsu.edu"
+
+# The Claude Code version every command and screen in these materials was checked against.
+checked:
+  version: "2.1.299"
+  date: "October 14, 2026"
+
+# Which activity runs live and which is self-guided. Paths are relative to the site root.
+live:
+  name: "Study-room bookings"
+  activity: "activity/study-rooms.html"
+  slides: "slides/study-rooms.html"
+self-guided:
+  name: "Campus café sales"
+  activity: "activity/cafe.html"
+
+# Answer keys, from instructor/answer-keys.json (tools/make_data.py)
+key:
+  study-rooms:
+    fy2026: "4,351"
+    fy2025: "3,109"
+    growth: "40%"
+  cafe:
+    fall-total: "$145,205.25"
+    exam-lift: "33%"
