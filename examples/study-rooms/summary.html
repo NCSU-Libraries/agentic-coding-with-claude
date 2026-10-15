@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Study-room bookings: summary for the dean</title>
+<style>
+  :root { --red: #cc0000; --ink: #333333; --muted: #666666; --line: #d9d9d9; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #ffffff; color: var(--ink); font-family: Arial, Helvetica, sans-serif; line-height: 1.45; }
+  .inner { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+  .site-header { background: var(--red); color: #ffffff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .site-header h1 { margin: 0; padding: 18px 0; font-size: 1.6rem; }
+  main.inner { padding-top: 22px; padding-bottom: 8px; }
+  .lede { margin: 0 0 20px; color: var(--muted); }
+  .numbers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .number { border: 1px solid var(--line); border-top: 4px solid var(--red); border-radius: 6px; padding: 16px; }
+  .big { font-size: 3rem; font-weight: 700; line-height: 1.1; color: var(--red); }
+  .what { margin: 6px 0 8px; font-weight: 700; }
+  .why { margin: 0; color: var(--muted); font-size: 0.95rem; }
+  .short { margin: 24px 0 0; padding-top: 14px; border-top: 1px solid var(--line); font-size: 1.05rem; }
+  .method { margin: 14px 0 0; color: var(--muted); font-size: 0.85rem; }
+  .site-footer { margin-top: 32px; border-top: 3px solid var(--red); color: var(--muted); font-size: 0.9rem; }
+  .site-footer .inner { padding-top: 14px; padding-bottom: 14px; }
+  @media (max-width: 760px) { .numbers { grid-template-columns: 1fr; } }
+  @media print { .number, .short { break-inside: avoid; } }
+</style>
+</head>
+<body>
+<header class="site-header"><div class="inner"><h1>Study-room bookings: summary for the dean</h1></div></header>
+<main class="inner">
+  <p class="lede">Fiscal year 2026 (July 1, 2025 to June 30, 2026) is the latest complete fiscal year. Each booking is counted once.</p>
+  <section class="numbers" aria-label="The three numbers that matter most">
+    <div class="number">
+      <div class="big">4,351</div>
+      <p class="what">bookings in FY2026</p>
+      <p class="why">Up from 3,109 in FY2025.</p>
+    </div>
+    <div class="number">
+      <div class="big">+40%</div>
+      <p class="what">more bookings than FY2025</p>
+      <p class="why">1,242 more bookings. 85% of that increase (1,061) came from the four third-floor rooms that opened in August 2025.</p>
+    </div>
+    <div class="number">
+      <div class="big">+6%</div>
+      <p class="what">growth in the 12 original rooms</p>
+      <p class="why">3,290 bookings in FY2026 vs 3,109 in FY2025, rooms 201 to 212 only. This is the like-for-like figure.</p>
+    </div>
+  </section>
+  <p class="short"><strong>In short:</strong> study-room use is up 40%, but most of the increase is the new third-floor rooms. The original rooms grew 6%.</p>
+  <p class="method">Source: room_bookings.csv, Jan 8, 2024 to Sep 30, 2026. A fiscal year runs July 1 to June 30 and is named for the year it ends. Repeated rows in the export (same booking_id) are counted once. More detail is in dashboard.html.</p>
+</main>
+<footer class="site-footer"><div class="inner">Synthetic data made for a workshop.</div></footer>
+</body>
+</html>

@@ -164,7 +164,7 @@ Same prompt, thirty laptops, different behavior. *That's why you read the plan.*
 
 [Windows: `! start dashboard.html`. Or just ask Claude to open it.]{.muted}
 
-![](../images/screens/study-rooms-dashboard.png){.shot height="500" fig-alt="A study-room dashboard built in a rehearsal run"}
+![](../images/screens/study-rooms-dashboard.png){.shot height="430" fig-alt="A study-room dashboard built in a rehearsal run"}
 
 ## 4 · Check
 
@@ -227,7 +227,7 @@ It should say **FY2026, up about {{< var key.study-rooms.growth >}}**, without b
 
 No mention of the style. Watch for a `Skill(house-style)` line, and look at the result.
 
-![](../images/screens/study-rooms-summary.png){.shot height="380" fig-alt="A one-page summary for the dean"}
+![](../images/screens/study-rooms-summary.png){.shot height="320" fig-alt="A one-page summary for the dean"}
 
 # Undo and share {.divider background-color="#CC0000"}
 
