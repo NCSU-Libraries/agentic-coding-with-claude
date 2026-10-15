@@ -1,0 +1,52 @@
+# Habits {.divider background-color="#CC0000"}
+
+[What to keep doing after today]{.eyebrow}
+
+## Seven habits worth keeping
+
+::: {.cards .two style="font-size:1.05em"}
+::: {.card}
+1. **Plan before anything that matters.** Read it for assumptions you didn't make.
+2. **Write down what it can't know** in `CLAUDE.md`.
+3. **Give it a way to check its work**: a number you trust, a test, a `/goal`.
+4. **Check one number yourself.** Looking right isn't being right.
+:::
+
+::: {.card}
+5. **Know your undo.** `/rewind` doesn't undo shell commands. Copies, or git.
+6. **Mind the data.** Only what you may share with an AI service; follow NC State's rules for sensitive data.
+7. **Start fresh between tasks** with `/clear`. Long, tangled sessions get worse.
+:::
+:::
+
+## Did we make the finish line?
+
+<ul class="finish">
+<li>Claude Code installed and signed in on your laptop</li>
+<li>A dashboard, built by Claude from a messy spreadsheet</li>
+<li>One wrong assumption caught <b>before</b> any code was written</li>
+<li>The dashboard's key number checked against the official answer</li>
+<li>A <code>CLAUDE.md</code> that remembers, and a <code>/house-style</code> skill you keep</li>
+<li>A link you can share</li>
+<li>Something of your own</li>
+</ul>
+
+## Keep going
+
+::: {.two-col}
+::: {}
+- **On your own:** the *{{< var self-guided.name >}}* activity. Same eight steps, a different trap.
+- The **cheat sheet**, the **finished examples**, and these slides are all on the materials page
+- In Claude Code: `/powerup` for short interactive lessons
+- **Help** with access or setup: [go.ncsu.edu/getdatahelp](https://go.ncsu.edu/getdatahelp)
+- **Questions** about the workshop: [{{< var email >}}](mailto:{{< var email >}})
+:::
+
+::: {style="text-align:center"}
+![](../images/qr-site.png){.qr fig-alt="QR code for the workshop materials page"}
+
+[{{< var site-short >}}]{.muted style="word-break:break-all"}
+:::
+:::
+
+## Thank you {.thank-you-slide}

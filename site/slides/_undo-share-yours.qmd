@@ -1,0 +1,56 @@
+## 7 · Undo
+
+<div class="type">Make dashboard.html rainbow-colored, with Comic Sans everywhere.</div>
+
+Look at it. Enjoy it. Then:
+
+<div class="type"><span class="cmd">/rewind</span></div>
+
+Pick the message before the rainbow → **restore the code**. Reload. (Or <kbd>Esc</kbd> <kbd>Esc</kbd> on an empty prompt.)
+
+::: {.card .red style="margin-top:16px"}
+**Rewind restores what Claude edited. It can't undo shell commands** like deleting (`rm`) or moving (`mv`) files.
+For real work: copies, or git.
+:::
+
+## 8 · Share
+
+<div class="type">Publish dashboard.html as an artifact.</div>
+
+- A private page on claude.ai, with a link
+- **Share** in the page header → a public link anyone can open
+- Needs Pro or higher; `/artifacts` lists everything you've published
+- On a Console account? Share a screenshot instead
+
+[Show your neighbor. Volunteers: we'll put two on the screen.]{.pill .dark}
+
+# Make it yours {.divider background-color="#CC0000"}
+
+[10 minutes, your call]{.eyebrow}
+
+## Pick one
+
+::: {.cards .three}
+::: {.card}
+[Improve it]{.card-title}
+
+A filter, a dark mode, a download button, a chart you wish it had.
+:::
+
+::: {.card}
+[Build something you'd use]{.card-title}
+
+A study timer in NC State colors. A flashcard quiz from your notes. A weekly planner. Start in a **new, empty
+folder**.
+:::
+
+::: {.card}
+[Your own data]{.card-title}
+
+Only data you're allowed to share with an AI service. When in doubt, don't.
+:::
+:::
+
+Give it a finish line it can prove:
+
+<div class="type"><span class="cmd">/goal</span> the page works when I double-click it and every button does something. Stop after 5 turns.</div>

@@ -1,0 +1,60 @@
+# Set it up {.divider background-color="#CC0000"}
+
+[15 minutes, together]{.eyebrow}
+
+## Install
+
+::: {.cards .two}
+::: {.card}
+[Mac]{.card-title}
+
+Open **Terminal**: <kbd>⌘</kbd> <kbd>Space</kbd>, type "Terminal"
+
+<div class="type shell">curl -fsSL https://claude.ai/install.sh | bash</div>
+:::
+
+::: {.card}
+[Windows]{.card-title}
+
+Open **PowerShell**: Start, type "PowerShell"
+
+<div class="type shell">irm https://claude.ai/install.ps1 | iex</div>
+:::
+:::
+
+**No progress bar.** It's working; give it a minute. When it's done, **open a new terminal window.**
+
+## Check, then sign in
+
+::: {.two-col .even}
+::: {}
+<div class="type shell">claude --version</div>
+
+A version number, like `2.1.299 (Claude Code)`
+
+<div class="type shell">claude</div>
+
+Pick a text style, sign in in the browser, come back. Type `/exit` to leave.
+:::
+
+::: {}
+| If you see | Do |
+|---|---|
+| `command not found` or `not recognized` | Open a **new** terminal. Still stuck: `claude doctor` |
+| Your plan doesn't include Claude Code | Free plan: pair up today |
+| Mac offers "command line developer tools" | **Not Now** is fine |
+:::
+:::
+
+## A 60-second tour
+
+- **The prompt box**: say what you want, in plain words
+- **The mode line** below it: `⏵⏵ auto mode on`
+- `/` lists commands; `/help` explains them
+- <kbd>Esc</kbd> stops Claude mid-step; <kbd>Esc</kbd> <kbd>Esc</kbd> goes back in time
+- <kbd>Shift</kbd>+<kbd>Tab</kbd> changes how much it asks before acting
+
+::: {.muted style="margin-top:24px"}
+New to terminals? Anthropic's *terminal guide for new users* is linked from the Setup page. Rather not use one? The
+Claude desktop app has a **Code** tab that runs the same agent.
+:::

@@ -1,0 +1,29 @@
+# Make it stick {.divider background-color="#CC0000"}
+
+[Project memory and skills]{.eyebrow}
+
+## Claude forgets. Files don't.
+
+::: {.cards .two}
+::: {.card}
+[`CLAUDE.md`: you write it]{.card-title}
+
+- A file in your folder
+- Read at the start of **every** session
+- Rules and facts it can't know: definitions, dates, house rules
+- *"Add this to CLAUDE.md: …"*, or `/init` for a first draft
+:::
+
+::: {.card}
+[Auto memory: it writes it]{.card-title}
+
+- Notes Claude saves as it learns your project
+- On by default; you'll see *"Saved 1 memory"*
+- Kept in your home folder, one set per project
+- `/memory` shows and edits both kinds
+:::
+:::
+
+::: {.muted style="margin-top:20px"}
+Keep `CLAUDE.md` short: every line is read every time. (The old `#` shortcut is gone; just ask.)
+:::

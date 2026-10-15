@@ -1,0 +1,232 @@
+---
+title: "Agentic Coding with Claude"
+subtitle: "Data Science Special Topics · NC State University Libraries"
+date: 2026-10-15
+date-format: long
+format:
+  revealjs:
+    theme: [default, ../theme/ncsu.scss, ../theme/slides.scss]
+    width: 1280
+    height: 760
+    margin: 0.06
+    slide-number: true
+    hash-type: number
+    transition: fade
+    background-transition: fade
+    preview-links: false
+    footer: "Data Science Services · ncsu-libraries.github.io/agentic-coding-with-claude"
+    logo: ../images/lib_logo_whiteBG.png
+---
+
+{{< include _open.qmd >}}
+
+{{< include _install.qmd >}}
+
+## Get the starter folder
+
+1. Materials page → download **cafe.zip** → unzip it to your **Desktop**
+2. Go into the folder and start Claude Code:
+
+::: {.cards .two}
+::: {.card}
+[Mac]{.card-title}
+
+<div class="type shell">cd ~/Desktop/cafe<br>claude</div>
+:::
+
+::: {.card}
+[Windows]{.card-title}
+
+<div class="type shell">cd $HOME\Desktop\cafe<br>claude</div>
+
+Not found? Try `$HOME\OneDrive\Desktop\cafe`
+:::
+:::
+
+3. *"Do you trust the files in this folder?"* → **Yes**. Claude can read and change everything in it, so never start
+   it in your home folder.
+
+# The loop, for real {.divider background-color="#CC0000"}
+
+[Campus café sales: read → plan → act → check]{.eyebrow}
+
+## The job
+
+::: {.two-col}
+::: {}
+You help run a campus café. The manager wants a **one-page dashboard**:
+
+- how sales moved over the year
+- what sells best
+- whether exam weeks really are busier
+
+You have a year of register data, `cafe_sales.csv`, and Claude Code.
+:::
+
+::: {.card}
+[What's in the folder]{.card-title}
+
+`README.md`: what each column means
+
+`cafe_sales.csv`: one row per menu item per day, August 2025 to May 2026
+
+*Synthetic data, made up for today.*
+:::
+:::
+
+## 1 · Read
+
+<div class="type lg">What's in this folder? Give me a quick summary of the data. Don't change anything yet.</div>
+
+- Watch it **open the files itself**: `Read(README.md)`, `Bash(wc -l cafe_sales.csv)`
+- A chatbot would have asked you to paste them in
+
+[Read its summary. What looks odd in the data?]{.pill .dark}
+
+## 2 · Plan: a note from the manager
+
+<div class="note-card"><span class="from">From the café manager</span>Exam weeks this year were <b>Oct 6–10</b> and <b>Dec 8–16</b> in the fall, and <b>Mar 2–6</b> and <b>Apr 28–May 7</b> in the spring. We were closed over the breaks, so those days show zero sales.</div>
+
+Claude can't see this note, and the prompt won't mention it. **On purpose.**
+
+[Predict: will Claude ask for the exam dates, or work them out some other way?]{.pill .dark}
+
+## 2 · Plan
+
+<div class="type">/plan Build a one-page dashboard, dashboard.html, for the café manager: daily sales across the year, the best-selling items, and whether exam weeks are busier. Make it a single file I can open by double-clicking.</div>
+
+- The mode line says `⏸ plan mode on`: it reads, may ask, then **proposes**
+- **It asks for the dates?** Answer from the note.
+- **It guesses them from the busiest weeks?** Catch it: that makes "exam weeks are busier" true by definition.
+
+## Catch it before any code exists
+
+::: {.two-col}
+::: {}
+When the plan is ready, you choose:
+
+1. Yes, and use auto mode
+2. **Yes, manually approve edits** ← once the plan is right
+3. **No, keep planning** ← if it isn't
+
+<div class="type">Exam weeks were Oct 6–10 and Dec 8–16 in the fall, and Mar 2–6 and Apr 28–May 7 in the spring. Use those exact dates, and leave days we were closed out of the averages.</div>
+:::
+
+::: {.card}
+[In rehearsal]{.card-title}
+
+Claude **asked** for the exam dates every time.
+
+Its fallback, if you just said "go": pencil in **the busiest weeks**, or assume **finals only**.
+
+This café's two busiest weeks are a **career fair** and **homecoming**.
+:::
+:::
+
+## Hands up
+
+- Whose Claude **asked** for the exam dates?
+- Whose planned to **guess** them?
+- Whose plan already fixed the **$45.00 latte**?
+
+::: {.statement style="margin-top:34px"}
+Same prompt, thirty laptops, different behavior. *That's why you read the plan.*
+:::
+
+## 3 · Act
+
+::: {.two-col}
+::: {}
+- Approve the first edit or two. **Read what it writes.**
+- Then <kbd>Shift</kbd>+<kbd>Tab</kbd> until the mode line says `⏵⏵ auto mode on`
+- <kbd>Esc</kbd> any time to stop and redirect
+:::
+
+::: {}
+| Mode | Claude… |
+|---|---|
+| `⏸ manual` | asks before every edit and command |
+| `⏵⏵ accept edits` | edits freely; asks before commands |
+| `⏸ plan` | proposes; changes nothing |
+| `⏵⏵ auto` (default) | acts; a safety check reviews each action |
+:::
+:::
+
+## Open it
+
+<div class="type">! open dashboard.html</div>
+
+[Windows: `! start dashboard.html`. Or just ask Claude to open it.]{.muted}
+
+![](../images/screens/cafe-dashboard.png){.shot height="470" fig-alt="A café dashboard built in a rehearsal run"}
+
+## 4 · Check
+
+A dashboard that **looks** right isn't one that **is** right. The manager knows one number:
+
+<div class="answer"><span class="label">Official fall sales, Aug 18 – Dec 16, 2025</span><span class="value">{{< var key.cafe.fall-total >}}</span></div>
+
+[What does yours say? No fall total on your page? Ask Claude for it.]{.pill .dark}
+
+## Make it prove it
+
+<div class="type"><span class="cmd">/goal</span> The dashboard's fall-semester sales (Aug 18 to Dec 16, 2025) match the café's official $145,205.25. If they don't, explain why before changing anything. Prove the final number from the CSV yourself, and don't hard-code it. Stop after 5 turns.</div>
+
+- Claude keeps working until the condition holds
+- A **separate model** checks after every turn
+- Give it a finish line it can prove, rules it must keep, and a limit
+
+## What a wrong number tells you
+
+| Your dashboard says | What happened |
+|---|---|
+| **$145,205.25** | The $45.00 latte corrected to $4.50 ✓ |
+| $148,769.25 | The $45.00 latte on Sep 16 counted as rung up: $3,564 too high |
+
+::: {.muted style="margin-top:18px"}
+Something on the page looks off, like one day towering over the rest? Screenshot it to the clipboard (Mac
+<kbd>⌃</kbd><kbd>⇧</kbd><kbd>⌘</kbd><kbd>4</kbd>, Windows <kbd>Win</kbd><kbd>⇧</kbd><kbd>S</kbd>) and paste it into
+Claude (<kbd>Ctrl</kbd>+<kbd>V</kbd>, or <kbd>Alt</kbd>+<kbd>V</kbd> on Windows).
+:::
+
+{{< include _memory-skills.qmd >}}
+
+## 5 · Remember
+
+<div class="type">Add what we learned to CLAUDE.md: the exam-week dates, that days with zero sales for every item mean we were closed, and that "Cold Brew Coffee" is the same item as "Cold Brew".</div>
+
+`/memory` to see it → `/clear` for a fresh conversation → then ask:
+
+<div class="type">How much busier were exam weeks than other weeks, per day we were open?</div>
+
+It should use **your** dates and skip closed days, without being told again.
+
+{{< include _skills.qmd >}}
+
+## Before and after
+
+::: {.cards .two}
+::: {}
+![](../images/screens/cafe-dashboard.png){.shot fig-alt="The dashboard before the house style"}
+:::
+
+::: {}
+![](../images/screens/cafe-styled.png){.shot fig-alt="The dashboard after /house-style"}
+:::
+:::
+
+## Does Claude reach for it on its own?
+
+<div class="type">Make a flyer for the café, flyer.html, announcing longer hours during finals week.</div>
+
+No mention of the style. Watch for a `Skill(house-style)` line, and look at the result.
+
+![](../images/screens/cafe-flyer.png){.shot height="380" fig-alt="A flyer for the café's finals-week hours"}
+
+# Undo and share {.divider background-color="#CC0000"}
+
+[Mistakes are cheap, if you know your undo]{.eyebrow}
+
+{{< include _undo-share-yours.qmd >}}
+
+{{< include _close.qmd >}}

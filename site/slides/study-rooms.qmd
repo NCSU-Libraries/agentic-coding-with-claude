@@ -1,0 +1,234 @@
+---
+title: "Agentic Coding with Claude"
+subtitle: "Data Science Special Topics · NC State University Libraries"
+date: 2026-10-15
+date-format: long
+format:
+  revealjs:
+    theme: [default, ../theme/ncsu.scss, ../theme/slides.scss]
+    width: 1280
+    height: 760
+    margin: 0.06
+    slide-number: true
+    hash-type: number
+    transition: fade
+    background-transition: fade
+    preview-links: false
+    footer: "Data Science Services · ncsu-libraries.github.io/agentic-coding-with-claude"
+    logo: ../images/lib_logo_whiteBG.png
+---
+
+{{< include _open.qmd >}}
+
+{{< include _install.qmd >}}
+
+## Get the starter folder
+
+1. Materials page → download **study-rooms.zip** → unzip it to your **Desktop**
+2. Go into the folder and start Claude Code:
+
+::: {.cards .two}
+::: {.card}
+[Mac]{.card-title}
+
+<div class="type shell">cd ~/Desktop/study-rooms<br>claude</div>
+:::
+
+::: {.card}
+[Windows]{.card-title}
+
+<div class="type shell">cd $HOME\Desktop\study-rooms<br>claude</div>
+
+Not found? Try `$HOME\OneDrive\Desktop\study-rooms`
+:::
+:::
+
+3. *"Do you trust the files in this folder?"* → **Yes**. Claude can read and change everything in it, so never start
+   it in your home folder.
+
+# The loop, for real {.divider background-color="#CC0000"}
+
+[Study-room bookings: read → plan → act → check]{.eyebrow}
+
+## The job
+
+::: {.two-col}
+::: {}
+You work at a campus library. Your supervisor wants a **one-page dashboard** for the annual report:
+
+- how many bookings, per year
+- when rooms are busiest
+- which rooms people want
+
+You have the booking system's export, `room_bookings.csv`, and Claude Code.
+:::
+
+::: {.card}
+[What's in the folder]{.card-title}
+
+`README.md`: what each column means
+
+`room_bookings.csv`: 10,279 rows, January 2024 to September 2026
+
+*Synthetic data, made up for today.*
+:::
+:::
+
+## 1 · Read
+
+<div class="type lg">What's in this folder? Give me a quick summary of the data. Don't change anything yet.</div>
+
+- Watch it **open the files itself**: `Read(README.md)`, `Bash(wc -l room_bookings.csv)`
+- A chatbot would have asked you to paste them in
+
+[Read its summary. What problems did it find?]{.pill .dark}
+
+## 2 · Plan: a note from your supervisor
+
+<div class="note-card"><span class="from">From your supervisor</span>Quick reminder for the dashboard: everything we report uses the <b>fiscal year, July 1 to June 30</b>, named for the year it ends. FY2026 = July 1, 2025 to June 30, 2026.</div>
+
+Claude can't see this note, and the prompt won't mention it. **On purpose.**
+
+[Predict: will Claude ask what "year" means, or assume?]{.pill .dark}
+
+## 2 · Plan
+
+<div class="type">/plan Build a one-page dashboard, dashboard.html, for my supervisor: total bookings per year, the busiest days and hours, and the most popular rooms. Make it a single file I can open by double-clicking.</div>
+
+- The mode line says `⏸ plan mode on`: it reads, may ask, then **proposes**
+- **It asks which year?** Answer from the note.
+- **It doesn't ask?** Look for 2024, 2025, 2026: calendar years.
+
+## Catch it before any code exists
+
+::: {.two-col}
+::: {}
+When the plan is ready, you choose:
+
+1. Yes, and use auto mode
+2. **Yes, manually approve edits** ← once the plan is right
+3. **No, keep planning** ← if it isn't
+
+<div class="type">We report by fiscal year: July 1 to June 30, named for the year it ends (FY2026 is July 2025 to June 2026). Use fiscal years.</div>
+:::
+
+::: {.card}
+[In rehearsal]{.card-title}
+
+Claude **asked** which kind of year in 3 of 3 runs.
+
+Its default, if you just said "go": **calendar years, every time.**
+
+Asking is good. Counting on it isn't.
+:::
+:::
+
+## Hands up
+
+- Whose Claude **asked** which year to use?
+- Whose **assumed** calendar years?
+- Whose plan already dealt with the **duplicate rows**?
+
+::: {.statement style="margin-top:34px"}
+Same prompt, thirty laptops, different behavior. *That's why you read the plan.*
+:::
+
+## 3 · Act
+
+::: {.two-col}
+::: {}
+- Approve the first edit or two. **Read what it writes.**
+- Then <kbd>Shift</kbd>+<kbd>Tab</kbd> until the mode line says `⏵⏵ auto mode on`
+- <kbd>Esc</kbd> any time to stop and redirect
+:::
+
+::: {}
+| Mode | Claude… |
+|---|---|
+| `⏸ manual` | asks before every edit and command |
+| `⏵⏵ accept edits` | edits freely; asks before commands |
+| `⏸ plan` | proposes; changes nothing |
+| `⏵⏵ auto` (default) | acts; a safety check reviews each action |
+:::
+:::
+
+## Open it
+
+<div class="type">! open dashboard.html</div>
+
+[Windows: `! start dashboard.html`. Or just ask Claude to open it.]{.muted}
+
+![](../images/screens/study-rooms-dashboard.png){.shot height="470" fig-alt="A study-room dashboard built in a rehearsal run"}
+
+## 4 · Check
+
+A dashboard that **looks** right isn't one that **is** right. Your supervisor knows one number:
+
+<div class="answer"><span class="label">Official FY2026 bookings</span><span class="value">{{< var key.study-rooms.fy2026 >}}</span></div>
+
+[What does yours say?]{.pill .dark}
+
+## Make it prove it
+
+<div class="type"><span class="cmd">/goal</span> dashboard.html shows FY2026 = 4,351 bookings, the official count. If it doesn't, explain why before changing anything. Prove the final number by counting the CSV yourself, and don't hard-code it. Stop after 5 turns.</div>
+
+- Claude keeps working until the condition holds
+- A **separate model** checks after every turn
+- Give it a finish line it can prove, rules it must keep, and a limit
+
+## What a wrong number tells you
+
+| Your dashboard says | What happened |
+|---|---|
+| **4,351** | Fiscal year, each booking counted once ✓ |
+| 4,513 | Fiscal year, but 162 bookings counted twice (the duplicate rows) |
+| 3,696 | Calendar 2025: the plan's default year |
+| 3,829 | Calendar 2025, with the duplicates |
+
+::: {.muted style="margin-top:18px"}
+Something on the page looks off? Screenshot it to the clipboard (Mac <kbd>⌃</kbd><kbd>⇧</kbd><kbd>⌘</kbd><kbd>4</kbd>,
+Windows <kbd>Win</kbd><kbd>⇧</kbd><kbd>S</kbd>) and paste it into Claude (<kbd>Ctrl</kbd>+<kbd>V</kbd>, or
+<kbd>Alt</kbd>+<kbd>V</kbd> on Windows).
+:::
+
+{{< include _memory-skills.qmd >}}
+
+## 5 · Remember
+
+<div class="type">Add our reporting rules to CLAUDE.md: we use fiscal years (July 1 to June 30, named for the year they end), and each booking_id counts once.</div>
+
+`/memory` to see it → `/clear` for a fresh conversation → then ask:
+
+<div class="type">Which fiscal year had the most bookings, and how much did it grow over the year before?</div>
+
+It should say **FY2026, up about {{< var key.study-rooms.growth >}}**, without being told the rule again.
+
+{{< include _skills.qmd >}}
+
+## Before and after
+
+::: {.cards .two}
+::: {}
+![](../images/screens/study-rooms-dashboard.png){.shot fig-alt="The dashboard before the house style"}
+:::
+
+::: {}
+![](../images/screens/study-rooms-styled.png){.shot fig-alt="The dashboard after /house-style"}
+:::
+:::
+
+## Does Claude reach for it on its own?
+
+<div class="type">Make a one-page summary for the library's dean, summary.html, with the three numbers that matter most.</div>
+
+No mention of the style. Watch for a `Skill(house-style)` line, and look at the result.
+
+![](../images/screens/study-rooms-summary.png){.shot height="380" fig-alt="A one-page summary for the dean"}
+
+# Undo and share {.divider background-color="#CC0000"}
+
+[Mistakes are cheap, if you know your undo]{.eyebrow}
+
+{{< include _undo-share-yours.qmd >}}
+
+{{< include _close.qmd >}}

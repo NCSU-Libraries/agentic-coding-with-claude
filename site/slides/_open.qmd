@@ -1,0 +1,93 @@
+## While we get started
+
+::: {.two-col}
+::: {}
+[Open the materials]{.eyebrow}
+
+[ncsu-libraries.github.io/<br>agentic-coding-with-claude]{.statement style="font-size:0.95em"}
+
+::: {.cards .two style="margin-top:28px"}
+::: {.card}
+[Paid Claude plan?]{.card-title}
+Start the install now: **Setup** on the materials page.
+:::
+
+::: {.card .red}
+[Free plan, or no account?]{.card-title}
+Pair with a neighbor. You'll be the one who checks the agent's work.
+:::
+:::
+:::
+
+::: {style="text-align:center;padding-top:30px"}
+![](../images/qr-site.png){.qr fig-alt="QR code for the workshop materials page"}
+:::
+:::
+
+## Today's finish line
+
+<ul class="finish">
+<li>Claude Code installed and signed in on your laptop</li>
+<li>A dashboard, built by Claude from a messy spreadsheet</li>
+<li>One wrong assumption caught <b>before</b> any code was written</li>
+<li>The dashboard's key number checked against the official answer</li>
+<li>A <code>CLAUDE.md</code> that remembers, and a <code>/house-style</code> skill you keep</li>
+<li>A link you can share</li>
+<li>Something of your own, built in the last ten minutes</li>
+</ul>
+
+# Why agents {.divider background-color="#CC0000"}
+
+[What's different, and why it changes the skill]{.eyebrow}
+
+## A chatbot talks. An agent acts.
+
+::: {.cards .two}
+::: {.card}
+[Chatbot]{.card-title}
+
+- You paste the file in
+- It answers in text
+- You copy its code out, run it, paste errors back
+- **You are its hands**
+:::
+
+::: {.card .dark}
+[Agent]{.card-title}
+
+- It opens your files itself
+- It runs commands and edits files
+- It sees its own errors and tries again
+- **You steer, and you check**
+:::
+:::
+
+> "Without tools, Claude can only respond with text. With tools, Claude can act."
+> <span class="muted">— Claude Code documentation</span>
+
+## The loop
+
+<div class="loop">
+<div class="stage"><b>Read</b>open files, look around</div><div class="arrow">→</div>
+<div class="stage"><b>Plan</b>propose before acting</div><div class="arrow">→</div>
+<div class="stage"><b>Act</b>edit, run, build</div><div class="arrow">→</div>
+<div class="stage"><b>Check</b>is it actually right?</div>
+</div>
+
+The docs put it plainly: *"You're part of this loop too."*
+
+::: {.statement style="margin-top:26px"}
+The skill now: set it up, *steer* it, *check* it.
+:::
+
+## What you're about to install
+
+**Claude Code**: an AI agent that works inside a folder on your computer.
+
+- It can **read and change any file** in the folder you start it in
+- You choose how often it asks before acting
+- The same agent runs in the terminal, the Desktop app, VS Code and the web
+
+::: {.card .red style="margin-top:22px"}
+Think of it as a capable coworker with access to one folder. **Choose the folder on purpose.**
+:::
