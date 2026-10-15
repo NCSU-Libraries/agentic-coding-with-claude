@@ -114,12 +114,21 @@ def make_bookings() -> pd.DataFrame:
         hp = hour_p.copy()
         if weekend:
             hp[hours < 11] = 0  # rooms open at 11 on weekends
+        taken: dict[str, list[tuple[int, int]]] = {r: [] for r in names}
         for _ in range(rng.poisson(booking_rate(d))):
             hour = int(rng.choice(hours, p=hp / hp.sum()))
             minute = 30 if rng.random() < 0.3 else 0
             length = float(rng.choice(DURATIONS[0], p=DURATIONS[1]))
             length = min(length, 24 - hour - minute / 60)  # last booking ends at midnight
-            room = str(rng.choice(names, p=room_p / room_p.sum()))
+            start = hour * 60 + minute
+            end = start + int(length * 60)
+            # The booking system won't double-book a room: pick among rooms free for the whole slot.
+            free = np.array([all(end <= s or start >= e for s, e in taken[r]) for r in names])
+            if not free.any():
+                continue  # every room is taken; the request never becomes a booking
+            p = room_p * free
+            room = str(rng.choice(names, p=p / p.sum()))
+            taken[room].append((start, end))
             cap = rooms[room][0]
             size = int(np.clip(rng.poisson(1.2 + cap / 3), 1, cap))
             who = str(rng.choice(["Undergraduate", "Graduate", "Faculty/Staff"], p=[0.68, 0.27, 0.05]))
@@ -318,12 +327,15 @@ def cafe_key(df: pd.DataFrame) -> dict:
 
 
 def main() -> None:
+    global rng  # each dataset gets its own seed, so changing one never reshuffles the other
+    rng = np.random.default_rng(20261015)
     clean = make_bookings()
     raw = add_duplicates(clean, 0.035)
     out = ROOT / "starters" / "study-rooms"
     out.mkdir(parents=True, exist_ok=True)
     raw.to_csv(out / "room_bookings.csv", index=False)
 
+    rng = np.random.default_rng(20261016)
     cafe = make_cafe()
     out = ROOT / "starters" / "cafe"
     out.mkdir(parents=True, exist_ok=True)
