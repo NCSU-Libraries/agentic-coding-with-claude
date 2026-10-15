@@ -12,3 +12,7 @@
 /tools/node_modules/
 __pycache__/
 .venv/
+
+# Built by tools/package.sh from starters/ and examples/
+/site/downloads/
+/site/examples/
