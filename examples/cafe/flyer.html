@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Longer hours during finals week</title>
+<style>
+  :root { --red: #CC0000; --ink: #333333; --muted: #666666; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: #fff; color: var(--ink); font: 18px/1.5 Arial, Helvetica, sans-serif; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 20px; }
+
+  /* house style: red header bar with the page title, footer with the workshop line */
+  .site-header { background: var(--red); color: #fff; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .site-header h1 { margin: 0; padding: 24px 0; font-size: 2.2rem; line-height: 1.15; }
+  .site-footer { border-top: 3px solid var(--red); margin-top: 32px; padding: 16px 0; color: var(--muted); font-size: .9rem; }
+
+  /* the flyer itself */
+  .kicker { margin: 28px 0 0; font-size: 1rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--red); }
+  .big { margin: 6px 0 22px; font-size: 1.9rem; line-height: 1.25; font-weight: 700; }
+  .hours { margin: 8px 0 24px; padding: 20px 24px; border: 3px solid var(--red); border-radius: 6px; }
+  .hours .label { margin: 0; font-size: .9rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .hours .when { margin: 4px 0 12px; font-size: 1.6rem; font-weight: 700; }
+  .hours .time { margin: 0; font-size: 2.2rem; font-weight: 700; line-height: 1.2; color: var(--red); }
+  .fill-in { border-bottom: 2px dashed var(--red); }   /* delete the class once the real hours and dates are in */
+  .menu { margin: 0; }
+  .thanks { margin: 24px 0 0; font-size: 1.3rem; font-weight: 700; }
+
+  @page { size: letter; margin: 0.5in; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <h1>Longer hours during finals week</h1>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="kicker">Campus Café</p>
+  <p class="big">Extra hours to help you through finals.</p>
+
+  <div class="hours">
+    <p class="label">Finals week</p>
+    <p class="when"><span class="fill-in">[dates of finals week]</span></p>
+    <p class="time">Open <span class="fill-in">[opening time]</span> to <span class="fill-in">[closing time]</span></p>
+  </div>
+
+  <p class="menu">Stop by for coffee, tea, hot chocolate and a bite to eat while you study.</p>
+  <p class="thanks">Good luck on your exams!</p>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">Synthetic data made for a workshop.</div>
+</footer>
+
+</body>
+</html>

@@ -77,6 +77,14 @@ like `Read(README.md)` or `Bash(wc -l cafe_sales.csv)`.
 Read its summary closely. It will likely point out oddities: days with no sales at all, an item whose name changes,
 a price that doesn't look right. **Decide what you think about each one**; you'll see them again in the plan.
 
+::: {.callout-note collapse="true" appearance="simple"}
+## What happened in our rehearsal
+
+Claude read both files and flagged four things before being asked: "Cold Brew" renamed to "Cold Brew Coffee" on Jan 7;
+three price increases the same day; **one latte rung up at $45.00** (*"probably a decimal slip"*); and **33 days with
+zero sales for every item**, which it suspected were closures.
+:::
+
 ## <span class="step-badge">2</span> Plan
 
 The manager sent you this note this morning:
@@ -123,6 +131,16 @@ In the default auto mode, Claude is built to keep working rather than stop for q
 get to catch an assumption.
 :::
 
+::: {.callout-note collapse="true" appearance="simple"}
+## What happened in our rehearsal
+
+Claude asked for the exam dates, and said why it wouldn't infer them: *"picking the busiest weeks would make the answer
+circular."* But its default, if not told, was **finals only** (Dec 8–16 and Apr 30–May 8), which misses both midterm
+weeks. It also noted that sales "jump in early and late October, mid-February and early March, which might be
+midterms": two of those were the career fair and homecoming. After the manager's dates, its plan compared each exam
+week with ordinary days *of the same weekday in the same term*.
+:::
+
 ## <span class="step-badge">3</span> Act
 
 In manual mode, Claude asks before each change. Approve the first edit or two and look at what it's writing.
@@ -151,6 +169,15 @@ When it's done, open the dashboard. Ask Claude to open it, or:
 :::
 
 ![A dashboard from a rehearsal run. Yours will look different: same prompt, different result.](../images/screens/cafe-dashboard.png){.shot}
+
+::: {.callout-note collapse="true" appearance="simple"}
+## What happened in our rehearsal
+
+Claude pasted the CSV into the page with `cat`, confirmed the copy was identical, and ran the page's own calculation
+code with macOS's built-in JavaScript runner to check its numbers: 43 checks, no failures. The page worked on the
+first double-click. It reported exam days at **+18%** over ordinary days, and pointed out that the career fair and
+homecoming weeks outsold every exam week. It also raised the weather as a confounder.
+:::
 
 ## <span class="step-badge">4</span> Check
 
@@ -183,6 +210,15 @@ If something on the page looks wrong, show Claude instead of describing it. Take
 ({{< kbd mac=Ctrl-Shift-Cmd-4 >}} on a Mac, {{< kbd win=Win-Shift-S >}} on Windows), then paste it into your prompt
 with {{< kbd Ctrl-V >}} (Mac Terminal) or {{< kbd Alt-V >}} (Windows) and say what's off.
 
+::: {.callout-note collapse="true" appearance="simple"}
+## What happened in our rehearsal
+
+The page didn't show a fall total, so `/goal` led Claude to add a **Totals by term** table: Fall 2025 =
+**$145,205.25**, matching the official figure to the cent. It showed why the raw CSV says $148,769.25 instead: one
+latte row priced $45.00, 88 sold, which is $3,564 too much. Its "not hard-coded" check even caught one of its own code
+comments that contained the number, and removed it.
+:::
+
 ## <span class="step-badge">5</span> Remember
 
 Claude forgets everything when a conversation ends, except what's written down. Write what you learned in
@@ -207,6 +243,14 @@ How much busier were exam weeks than other weeks, per day we were open?
 
 It should use your exam dates and skip the closed days without being told again.
 
+::: {.callout-note collapse="true" appearance="simple"}
+## What happened in our rehearsal
+
+Claude wrote a short `CLAUDE.md` with the exam dates, the closed-days rule and the Cold Brew rename, and asked whether
+to add the latte fix and the January price rise too. A fresh session with only that file answered the exam-week
+question using your dates and skipping closed days.
+:::
+
 ## <span class="step-badge">6</span> Make a skill
 
 A skill is a reusable set of instructions with a name. You run it as a command, and Claude can also use it on its own
@@ -218,7 +262,16 @@ Create a skill called house-style that gives any web page we make the NC State l
 ```
 :::
 
-Claude writes `.claude/skills/house-style/SKILL.md`. Run it:
+Claude writes `.claude/skills/house-style/SKILL.md`. This folder had no skills before, so Claude Code isn't watching
+that folder yet. Tell it to look once:
+
+::: {.prompt}
+```text
+/reload-skills
+```
+:::
+
+Then run your skill:
 
 ::: {.prompt}
 ```text
@@ -232,6 +285,15 @@ Now ask for something new without mentioning the style, and watch whether Claude
 ```text
 Make a flyer for the café, flyer.html, announcing longer hours during finals week.
 ```
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+## What happened in our rehearsal
+
+When the skill was first run, `/house-style` answered **"Unknown skill"**: the folder had no skills when the session
+started. That's why this page tells you to run `/reload-skills`. For the flyer, Claude used the house style without
+being asked. It didn't know the café's hours or which finals week was meant, so it left visible blanks,
+`[opening time]` and `[closing time]`, rather than invent them.
 :::
 
 ## <span class="step-badge">7</span> Undo

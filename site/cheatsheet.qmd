@@ -52,6 +52,7 @@ The bottom of the screen shows the current mode. {{< kbd Shift-Tab >}} cycles th
 | `/rewind` | Go back to before a prompt: restore the files, the conversation, or both |
 | `/clear` | Start a fresh conversation (memory files stay) |
 | `/skills` | List the skills Claude can use here |
+| `/reload-skills` | Pick up a skill you just created in a new skills folder |
 | `/artifacts` | List pages you've published, and copy their links |
 | `/usage` | See how much of your plan's usage you've used |
 | `/context` | See how full the conversation is |

@@ -48,5 +48,6 @@ When what you ask matches the skill's description, Claude can pick it up on its 
 
 ::: {.muted style="margin-top:20px"}
 Custom commands and skills are now the same thing; old `.claude/commands/` files still work. Put a skill in your
-project's `.claude/skills/`, or in `~/.claude/skills/` to use it everywhere.
+project's `.claude/skills/`, or in `~/.claude/skills/` to use it everywhere. Edits to a skill load right away; a
+skills folder that didn't exist when the session started needs `/reload-skills` once.
 :::

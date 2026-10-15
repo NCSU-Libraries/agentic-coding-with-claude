@@ -266,7 +266,16 @@ Create a skill called house-style that gives any web page we make the NC State l
 ```
 :::
 
-Claude writes `.claude/skills/house-style/SKILL.md`. Run it:
+Claude writes `.claude/skills/house-style/SKILL.md`. This folder had no skills before, so Claude Code isn't watching
+that folder yet. Tell it to look once:
+
+::: {.prompt}
+```text
+/reload-skills
+```
+:::
+
+Then run your skill:
 
 ::: {.prompt}
 ```text

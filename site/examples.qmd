@@ -34,15 +34,21 @@ Finder to show them; on Windows, choose **View → Show → Hidden items** in Fi
 
 ## What happened in the rehearsals
 
-Both datasets went the same way in the steps that matter:
+Both activities went the same way in the steps that matter:
 
-- **Read:** Claude found every planted data problem on its own, before being asked for anything: repeated rows and
-  old room labels, or the $45 latte, the closed days and the renamed cold brew.
-- **Plan:** Claude *asked* about the rule it couldn't know, the kind of year or the exam dates. But its fallback
-  for "just go" was wrong: calendar years every time, or finals only for the café. The note from the boss is what got
-  it right.
-- **Check:** the official number matched once the plan had the rule, because Claude had already handled the data
-  problems.
+- **Read:** Claude found every planted data problem on its own, before being asked for anything. For the study rooms:
+  the repeated rows and the old room labels. For the café: the $45 latte, the closed days and the renamed cold brew.
+- **Plan:** Claude *asked* about the rule it couldn't know, the kind of year or the exam dates. But its fallback for
+  "just go" was wrong: calendar years every time, or finals only for the café. The note from the boss is what got it
+  right.
+- **Check:** both dashboards matched the official number on the first try: 4,351 bookings and $145,205.25. `/goal`
+  made Claude prove it from the CSV and confirm the number wasn't typed into the page.
+- **Remember:** after `/clear`, a fresh session followed the rules in `CLAUDE.md` without being told again.
+- **Skill:** for a new page, Claude used the house style without being asked. The dean's summary put a like-for-like
+  +6% next to the +40% headline. The café flyer left blanks for hours it didn't know.
 
 The lesson isn't that Claude is careless. It's thorough, and it still can't know your office's rules unless you say
 them.
+
+One practical note from the café run: the first time you run a skill in a folder that had no skills before,
+Claude Code answers "Unknown skill" until you run `/reload-skills`.

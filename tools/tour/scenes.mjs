@@ -149,7 +149,7 @@ export default ({ S, js, sleep, moveTo, hoverText, evaluate }) => {
       await S('stage.file(null)');
       await cap('After /clear, a fresh conversation still knows the rule');
       await S('stage.term.clear()');
-      await shell('/clear');
+      await type('/clear', 30);
       await type('Which fiscal year had the most bookings, and how much did it grow over the year before?', 18);
       await lines([['say', '<b>FY2026</b>: 4,351 bookings, up <b>40%</b> from FY2025 (3,109).']], 900);
       await sleep(2200);
@@ -161,7 +161,9 @@ export default ({ S, js, sleep, moveTo, hoverText, evaluate }) => {
       await cap('Turn your house style into a skill');
       await type('Create a skill called house-style that gives any web page we make the NC State look: Wolfpack Red #CC0000 for highlights, dark gray text on white, Arial or Helvetica, a red header bar with the page title, and a footer that says "Synthetic data made for a workshop." Use it whenever you create or restyle a web page.', 6);
       await lines([['tool', '<b>Write</b>(.claude/skills/house-style/SKILL.md)']], 700);
-      await cap('Run it like a command');
+      await cap('Load it once, then run it like a command');
+      await type('/reload-skills', 30);
+      await lines([['res', 'Skills reloaded: house-style added']], 500);
       await type('/house-style dashboard.html', 30);
       await lines([['tool', '<b>Skill</b>(house-style)'], ['tool', '<b>Edit</b>(dashboard.html)']], 700);
       await page('dashboard-styled.html', 'study-rooms/dashboard.html', 0.55);
@@ -180,7 +182,7 @@ export default ({ S, js, sleep, moveTo, hoverText, evaluate }) => {
       await page('dashboard-rainbow.html', 'study-rooms/dashboard.html', 0.55);
       await sleep(2400);
       await cap('/rewind puts back what Claude edited');
-      await shell('/rewind');
+      await type('/rewind', 30);
       await opts('Rewind to before “Make dashboard.html rainbow-colored…”', ['Restore code and conversation', 'Restore conversation only', 'Restore code only'], 0);
       await sleep(1400);
       await page('dashboard-styled.html', 'study-rooms/dashboard.html', 0.55);

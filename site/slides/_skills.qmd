@@ -2,6 +2,8 @@
 
 <div class="type">Create a skill called house-style that gives any web page we make the NC State look: Wolfpack Red #CC0000 for highlights, dark gray text on white, Arial or Helvetica, a red header bar with the page title, and a footer that says "Synthetic data made for a workshop." Use it whenever you create or restyle a web page.</div>
 
-Then run it, and reload the page:
+This folder had no skills before, so tell Claude Code to look once. Then run it, and reload the page:
+
+<div class="type"><span class="cmd">/reload-skills</span></div>
 
 <div class="type"><span class="cmd">/house-style</span> dashboard.html</div>
