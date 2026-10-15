@@ -57,7 +57,7 @@ for (const s of shots) {
     lastUrl = s.url;
     if (s.slide != null) await sleep(1200);
   }
-  if (s.slide != null) await evaluate(`Reveal.configure({ transition: 'none', backgroundTransition: 'none' }); const el = Reveal.getSlides()[${s.slide}]; const ix = Reveal.getIndices(el); Reveal.slide(ix.h, ix.v);`);
+  if (s.slide != null) await evaluate(`Reveal.configure({ transition: 'none', backgroundTransition: 'none' }); (() => { const ix = Reveal.getIndices(Reveal.getSlides()[${s.slide}]); Reveal.slide(ix.h, ix.v); })();`);
   await sleep(s.wait ?? 600);
   if (s.eval) { await evaluate(s.eval); await sleep(400); }
   let clip;

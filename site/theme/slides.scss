@@ -15,7 +15,7 @@ $red: #CC0000;
 
 @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap");
 
-.reveal { font-size: 36px; }
+.reveal { font-size: 40px; }
 .reveal .slides section { text-align: left; }
 .reveal h2 { font-size: 1.45em; margin-bottom: 0.45em; }
 
@@ -114,7 +114,7 @@ $red: #CC0000;
   padding: 1px 9px; font-family: "Inter", sans-serif; font-weight: 700; font-size: 0.85em;
 }
 .reveal code { color: $deep-red; background: $panel; border-radius: 5px; padding: 1px 6px; font-size: 0.9em; }
-.reveal table { font-size: 0.64em; }
+.reveal table { font-size: 0.66em; }
 .reveal table th { border-bottom: 3px solid $red !important; }
 
 .reveal .qr { width: 210px; height: 210px; image-rendering: pixelated; border: 8px solid #FFF; box-shadow: 0 6px 18px rgba(0,0,0,.12); }

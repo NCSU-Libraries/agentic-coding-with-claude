@@ -1,6 +1,6 @@
-# Make it stick {.divider background-color="#CC0000"}
+# While it builds {.divider background-color="#CC0000"}
 
-[Project memory and skills]{.eyebrow}
+[Two ideas to have ready when it's done: memory and skills]{.eyebrow}
 
 ## Claude forgets. Files don't.
 
@@ -26,4 +26,27 @@
 
 ::: {.muted style="margin-top:20px"}
 Keep `CLAUDE.md` short: every line is read every time. (The old `#` shortcut is gone; just ask.)
+:::
+
+## Skills: instructions with a name
+
+<div class="type shell" style="font-size:0.62em">.claude/skills/house-style/SKILL.md &nbsp;&nbsp;→&nbsp;&nbsp; /house-style</div>
+
+::: {.cards .two}
+::: {.card}
+[You run it]{.card-title}
+
+Type `/house-style`, like any command.
+:::
+
+::: {.card}
+[Claude runs it]{.card-title}
+
+When what you ask matches the skill's description, Claude can pick it up on its own.
+:::
+:::
+
+::: {.muted style="margin-top:20px"}
+Custom commands and skills are now the same thing; old `.claude/commands/` files still work. Put a skill in your
+project's `.claude/skills/`, or in `~/.claude/skills/` to use it everywhere.
 :::

@@ -152,13 +152,19 @@ Same prompt, thirty laptops, different behavior. *That's why you read the plan.*
 :::
 :::
 
+{{< include _memory-skills.qmd >}}
+
+# Check it {.divider background-color="#CC0000"}
+
+[Open the page, then make sure it's right]{.eyebrow}
+
 ## Open it
 
 <div class="type">! open dashboard.html</div>
 
 [Windows: `! start dashboard.html`. Or just ask Claude to open it.]{.muted}
 
-![](../images/screens/cafe-dashboard.png){.shot height="470" fig-alt="A café dashboard built in a rehearsal run"}
+![](../images/screens/cafe-dashboard.png){.shot height="500" fig-alt="A café dashboard built in a rehearsal run"}
 
 ## 4 · Check
 
@@ -188,8 +194,6 @@ Something on the page looks off, like one day towering over the rest? Screenshot
 <kbd>⌃</kbd><kbd>⇧</kbd><kbd>⌘</kbd><kbd>4</kbd>, Windows <kbd>Win</kbd><kbd>⇧</kbd><kbd>S</kbd>) and paste it into
 Claude (<kbd>Ctrl</kbd>+<kbd>V</kbd>, or <kbd>Alt</kbd>+<kbd>V</kbd> on Windows).
 :::
-
-{{< include _memory-skills.qmd >}}
 
 ## 5 · Remember
 

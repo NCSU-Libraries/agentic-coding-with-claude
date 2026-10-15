@@ -79,11 +79,12 @@ screens are simplified re-creations; the dashboards are the real output.</p>
 | Time | What we'll do |
 | --- | --- |
 | 2:00 | What makes an agent different from a chatbot |
-| 2:08 | Install Claude Code together, and open the starter folder |
-| 2:23 | The loop on a real task: **read**, **plan**, **act**, **check** |
-| 2:50 | Make it stick: project memory and a skill of your own |
-| 3:05 | Undo a bad change, and share your dashboard |
-| 3:13 | Make it yours: build something you want |
+| 2:10 | Install Claude Code together, and open the starter folder |
+| 2:25 | The loop on a real task: **read**, **plan**, **act**, with memory and skills explained while it builds |
+| 2:48 | **Check** it: one number you trust, and make Claude prove it |
+| 2:57 | Make it stick: project memory and a skill of your own |
+| 3:08 | Undo a bad change, and share your dashboard |
+| 3:14 | Make it yours: build something you want |
 | 3:23 | Habits for using agents responsibly |
 
 ## Get help

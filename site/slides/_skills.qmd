@@ -1,26 +1,3 @@
-## Skills: instructions with a name
-
-<div class="type shell" style="font-size:0.62em">.claude/skills/house-style/SKILL.md &nbsp;&nbsp;→&nbsp;&nbsp; /house-style</div>
-
-::: {.cards .two}
-::: {.card}
-[You run it]{.card-title}
-
-Type `/house-style`, like any command.
-:::
-
-::: {.card}
-[Claude runs it]{.card-title}
-
-When what you ask matches the skill's description, Claude can pick it up on its own.
-:::
-:::
-
-::: {.muted style="margin-top:20px"}
-Custom commands and skills are now the same thing; old `.claude/commands/` files still work. Put a skill in your
-project's `.claude/skills/`, or in `~/.claude/skills/` to use it everywhere.
-:::
-
 ## 6 · Make a skill
 
 <div class="type">Create a skill called house-style that gives any web page we make the NC State look: Wolfpack Red #CC0000 for highlights, dark gray text on white, Arial or Helvetica, a red header bar with the page title, and a footer that says "Synthetic data made for a workshop." Use it whenever you create or restyle a web page.</div>
