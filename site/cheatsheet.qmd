@@ -45,6 +45,7 @@ The bottom of the screen shows the current mode. {{< kbd Shift-Tab >}} cycles th
 
 | Command | What it does |
 | --- | --- |
+| `/statusline <what to show>` | Choose what the line under the input box shows: model, folder, effort, context used. `/statusline remove it` turns it off |
 | `/plan <task>` | Plan first, change nothing until you approve |
 | `/goal <condition>` | Keep working until the condition is true; a separate model checks after each turn. Give it a finish line Claude can prove, and a limit like "stop after 5 turns" |
 | `/memory` | See and edit what Claude remembers: your `CLAUDE.md` files and its own notes |

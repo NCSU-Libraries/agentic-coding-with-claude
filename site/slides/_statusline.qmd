@@ -1,0 +1,14 @@
+## Your status line
+
+<div class="type">/statusline show the model, this folder's name, the effort level, the percentage of the context window used, and the git branch when there is one. Read the branch from the .git folder instead of running git, and test the script before you finish.</div>
+
+- It writes a small script into Claude Code's settings. If it asks, **approve**
+- Then look under the input box: model · folder · effort · context used
+- No branch here: this folder isn't a git repository
+
+::: {.notes}
+A minute or two. Why "the .git folder": on a Mac without developer tools, running git pops up an installer, and the
+status line runs after every reply. "Test the script" makes Claude run it before saying it's done, which catches a
+missing tool such as jq on older Macs. The context number climbs with each step and drops after /clear in step 5.
+Running late? Skip this slide; nothing later depends on it. To turn it off: /statusline remove it.
+:::

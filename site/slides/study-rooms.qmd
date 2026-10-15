@@ -46,6 +46,8 @@ format:
 3. Not found? Type `cd` and a space, drag the folder in, press Enter
 4. *"Quick safety check"* → **Yes, I trust this folder**
 
+{{< include _statusline.qmd >}}
+
 # The loop, for real {.divider background-color="#CC0000"}
 
 [Study-room bookings: read → plan → act → check]{.eyebrow}

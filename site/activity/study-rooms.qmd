@@ -76,6 +76,23 @@ Claude Code can read and change everything in the folder you start it in. Starti
 Desktop gives it far more reach than this task needs.
 :::
 
+## Your status line
+
+Before the loop starts, have Claude Code keep what it's working with on screen. Paste:
+
+::: {.prompt}
+```default
+/statusline show the model, this folder's name, the effort level, the percentage of the context window used, and the git branch when there is one. Read the branch from the .git folder instead of running git, and test the script before you finish.
+```
+:::
+
+Claude writes a small script and adds it to Claude Code's settings, in Claude Code's own folder rather than this one.
+If it asks to create or edit those files, approve. When it's done, the line under the input box shows the model,
+`study-rooms`, the effort level and how much of the context window is used. There's no branch: this folder isn't a git
+repository.
+
+Watch the context number as you go. It climbs with every step, and drops when you `/clear` in step 5.
+
 ## <span class="step-badge">1</span> Read
 
 Ask what's there before asking for anything else.

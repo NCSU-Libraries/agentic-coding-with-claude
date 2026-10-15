@@ -17,7 +17,7 @@ The event description is the starting point, not a contract. Alp's priority is h
 people in the room.
 
 **Design (agreed 2026-10-15):** one shared task that everyone works on, a messy spreadsheet → a one-page dashboard.
-It runs through eight steps: read, plan, act, check, remember, skill, undo, share. The last ten minutes are "make it
+It runs through eight steps: read, plan, act, check, remember, skill, undo, share. A `/statusline` setup comes first. The last ten minutes are "make it
 yours". There are two interchangeable activities, study-room bookings and a campus café. One runs live and the
 other is self-guided. Which one runs live is set in `site/_variables.yml` (`live`, `self-guided`). The comparison is in
 `instructor/decision-memo.md`.
@@ -76,7 +76,8 @@ The Pages workflow (`.github/workflows/deploy-pages.yml`) runs `package.sh`, the
   A real CLI rehearsal is a manual step for Alp, described in the facilitation guide. Attendees run Opus 5.5, the
   default on every paid plan since 2.1.280, so Sonnet rehearsal results are only a guide.
 - **Rehearse and present with a clean Claude Code profile** (`CLAUDE_CONFIG_DIR=~/.claude-demo`). Alp's own setup has
-  plugins and settings attendees don't, and `tools/demo-folder.sh` clears memory in whichever profile is set.
+  plugins and settings attendees don't, and `tools/demo-folder.sh` clears memory in whichever profile is set. It isn't
+  fully clean: `~/.claude/CLAUDE.md` still loads, as the home folder's project memory, and `/memory` lists it.
 - **Quarto slides:**
   - Quarto gives level-1 (`#`) section slides the class `title-slide`, and `ncsu.scss` paints that white. The
     `.divider` rules in `site/theme/slides.scss` keep them red.
