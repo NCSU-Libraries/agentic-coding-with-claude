@@ -49,8 +49,8 @@
   #term .opt:not(.sel)::before { content: "  "; }
   #term .welcome { border: 1px solid #D97757; border-radius: 8px; padding: 10px 14px; color: #EEE; margin-bottom: 8px; }
   #term .welcome b { color: #D97757; }
-  #term .input { position: absolute; left: 14px; right: 14px; bottom: 30px; height: 40px; border: 1px solid #555; border-radius: 8px;
-                 padding: 9px 12px; font: 14.5px/1.4 "JetBrains Mono", Menlo, monospace; color: #FFF; white-space: nowrap; overflow: hidden; }
+  #term .input { position: absolute; left: 14px; right: 14px; bottom: 30px; min-height: 40px; background: var(--term); border: 1px solid #555; border-radius: 8px;
+                 padding: 9px 12px; font: 14.5px/1.4 "JetBrains Mono", Menlo, monospace; color: #FFF; white-space: pre-wrap; word-break: break-word; overflow: hidden; }
   #term .input::before { content: "> "; color: #999; }
   #term .caret { display: inline-block; width: 8px; height: 17px; background: #DDD; vertical-align: -3px; animation: blink 1s steps(1) infinite; }
   @keyframes blink { 50% { opacity: 0; } }

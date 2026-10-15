@@ -27,7 +27,7 @@ format:
 ## Get the starter folder
 
 1. Materials page → **study-rooms.zip** → unzip it to your **Desktop**
-2. Go into the folder and start Claude Code:
+2. Go into the folder (never your home folder) and start Claude Code:
 
 ::: {.cards .two}
 ::: {.card}
@@ -43,8 +43,8 @@ format:
 :::
 :::
 
-3. Not found? Type `cd` and a space, drag the folder onto the terminal, press Enter
-4. *"Quick safety check"* → **Yes, I trust this folder**. Never start Claude in your home folder
+3. Not found? Type `cd` and a space, drag the folder in, press Enter
+4. *"Quick safety check"* → **Yes, I trust this folder**
 
 # The loop, for real {.divider background-color="#CC0000"}
 
@@ -78,7 +78,7 @@ You have the booking system's export, `room_bookings.csv`, and Claude Code.
 
 <div class="type lg">What's in this folder? Give me a quick summary of the data. Don't change anything yet.</div>
 
-- Watch it **open the files itself**, and run commands like `Bash(wc -l room_bookings.csv)`
+- Watch it **open the files itself** and run commands,<br>like `Bash(wc -l room_bookings.csv)`
 - A chatbot would have asked you to paste them in
 - Copy every prompt from **Today's activity** on the materials page
 

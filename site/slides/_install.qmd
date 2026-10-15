@@ -42,15 +42,10 @@ signed in.
 ::: {}
 | If you see | Do |
 |---|---|
-| `command not found` or `not recognized` | Run the fix under **Setup notes** in the install output, then open a **new** terminal |
+| `command not found` or `not recognized` | Run the fix under **Setup notes** in the install output (it's also on the Setup page), then open a **new** terminal |
 | Your plan doesn't include Claude Code | Free plan: pair up today |
 | Mac offers "command line developer tools" | **Not Now** is fine |
 :::
-:::
-
-::: {.muted style="margin-top:14px"}
-Mac PATH fix: `echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.zshrc && source ~/.zshrc`. Windows: see the
-Setup page.
 :::
 
 ## A 60-second tour

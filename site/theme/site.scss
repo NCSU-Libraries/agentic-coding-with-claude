@@ -26,7 +26,9 @@ h1, h2, h3 { letter-spacing: -0.01em; color: #1A1A1A; }
 h2 { border-bottom: 4px solid $ncsu-red; padding-bottom: 0.25rem; margin-top: 2.4rem; }
 h3 { margin-top: 1.8rem; }
 
-.navbar-brand img { max-height: 30px; }
+.navbar-brand img { max-height: 30px; max-width: 55vw; width: auto; height: auto; }
+// Long paths in table cells, like ~/.claude/projects/<project>/memory/, may break rather than push the page wide.
+td code { overflow-wrap: anywhere; }
 .navbar .navbar-title { font-weight: 700; }
 
 // Hero on the home page

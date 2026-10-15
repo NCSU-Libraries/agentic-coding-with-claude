@@ -22,11 +22,11 @@ A terminal is a window where you type commands instead of clicking.
 ::: {.panel-tabset}
 ### Mac
 
-Press {{< kbd mac=Cmd-Space >}}, type **Terminal**, and press {{< kbd Enter >}}.
+Press {{< kbd Cmd-Space >}}, type **Terminal**, and press {{< kbd Enter >}}.
 
 ### Windows
 
-Press the {{< kbd win=Win >}} key, type **PowerShell**, and press {{< kbd Enter >}}. Your prompt starts with `PS C:\`.
+Press the {{< kbd Win >}} key, type **PowerShell**, and press {{< kbd Enter >}}. Your prompt starts with `PS C:\`.
 :::
 
 New to terminals? Anthropic's [terminal guide for new users](https://code.claude.com/docs/en/terminal-guide) walks

@@ -12,7 +12,7 @@ Each download is the whole folder at the end of the activity: the data, the dash
 where the example left off.
 
 ::: {.callout-note}
-Folders that start with a dot, like `.claude`, are hidden by default. On a Mac press {{< kbd mac=Cmd-Shift-. >}} in
+Folders that start with a dot, like `.claude`, are hidden by default. On a Mac press {{< kbd Cmd-Shift-. >}} in
 Finder to show them; on Windows, choose **View → Show → Hidden items** in File Explorer.
 :::
 

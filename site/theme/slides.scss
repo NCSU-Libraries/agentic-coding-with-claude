@@ -47,6 +47,10 @@ $red: #CC0000;
 }
 .reveal .type.shell::before { content: "In your terminal"; background: #555; }
 .reveal .type.lg { font-size: 0.7em; }
+// Commands inside a card would otherwise be the smallest text on the slide.
+.reveal .card .type { font-size: 0.85em; }
+// A path-to-command mapping: shown, not typed.
+.reveal .type.diagram::before { display: none; }
 
 // The note Claude can't see
 .reveal .note-card {
@@ -106,7 +110,7 @@ $red: #CC0000;
 
 // Section divider: red slide
 .reveal .slides section.divider h1 { border: 0; padding: 0; color: #FFF; font-size: 2.3em; letter-spacing: -1px; }
-.reveal .slides section.divider .eyebrow { color: #FFD2D2; }
+.reveal .slides section.divider .eyebrow { color: #FFD2D2; font-size: 0.6em; }
 .reveal .slides section.divider p { color: #FFE9E9; font-size: 0.8em; }
 
 .reveal kbd {
@@ -117,6 +121,7 @@ $red: #CC0000;
 .reveal table { font-size: 0.66em; }
 .reveal table th { border-bottom: 3px solid $red !important; }
 
+.reveal .qr.qr-big { width: 300px; height: 300px; }
 .reveal .qr { width: 210px; height: 210px; image-rendering: pixelated; border: 8px solid #FFF; box-shadow: 0 6px 18px rgba(0,0,0,.12); }
 .reveal .two-col { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 34px; align-items: start; }
 .reveal .two-col.even { grid-template-columns: 1fr 1fr; }
@@ -125,6 +130,8 @@ $red: #CC0000;
 // ncsu.scss sizes the logo for a title-heavy deck; keep it small in the corner here.
 .reveal .slide-logo { height: 34px !important; max-height: 34px !important; width: auto !important; max-width: none !important; bottom: 14px !important; right: 18px !important; }
 .reveal .footer { font-size: 15px !important; color: #6D6E71; }
+// On the red divider slides the slide number would be dark red on red; the run sheet cues by slide number.
+.reveal.has-dark-background .slide-number, .reveal.has-dark-background .slide-number a { color: #FFE9E9 !important; }
 .reveal section.thank-you-slide h2 { border: 0; }
 // Quarto marks level-1 section slides as .title-slide, which ncsu.scss paints white: keep dividers red.
 .reveal .slides section.divider.title-slide { background: transparent !important; }

@@ -30,7 +30,7 @@ Keep `CLAUDE.md` short: every line is read every time. (The old `#` shortcut is 
 
 ## Skills: instructions with a name
 
-<div class="type shell" style="font-size:0.62em">.claude/skills/house-style/SKILL.md &nbsp;&nbsp;→&nbsp;&nbsp; /house-style</div>
+<div class="type diagram" style="font-size:0.62em">.claude/skills/house-style/SKILL.md &nbsp;&nbsp;→&nbsp;&nbsp; /house-style</div>
 
 ::: {.cards .two}
 ::: {.card}

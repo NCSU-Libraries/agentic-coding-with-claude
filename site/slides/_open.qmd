@@ -20,7 +20,7 @@ Pair with a neighbor. You'll be the one who checks the agent's work.
 :::
 
 ::: {style="text-align:center;padding-top:30px"}
-![](../images/qr-site.png){.qr fig-alt="QR code for the workshop materials page"}
+![](../images/qr-site.png){.qr .qr-big fig-alt="QR code for the workshop materials page"}
 :::
 :::
 

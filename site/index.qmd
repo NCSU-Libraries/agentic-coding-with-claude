@@ -78,7 +78,7 @@ and every step is also written out on the activity page.</p>
 ## Today's plan
 
 | Time | What we'll do |
-| --- | --- |
+| ---- | ------------------------------------------------------------ |
 | 2:00 | What makes an agent different from a chatbot |
 | 2:10 | Install Claude Code together, and open the starter folder |
 | 2:25 | The loop on a real task: **read**, **plan**, **act**, with memory and skills explained while it builds |

@@ -42,7 +42,7 @@ export default ({ S, js, sleep, moveTo, hoverText, evaluate }) => {
       await S('stage.term.clear()');
       await S(`stage.term.add('<div class="welcome"><b>✻</b> Welcome to <b>Claude Code</b><br><span style="color:#999">~/Desktop/study-rooms</span></div>', '')`);
       await sleep(500);
-      await opts('Do you trust the files in this folder?', ['Yes, I trust this folder', 'No, exit'], 0);
+      await opts('Quick safety check: Is this a project you created or one you trust?', ['Yes, I trust this folder', 'No, exit'], 0);
       await sleep(1800);
       await mode('auto');
       await sleep(600);
@@ -59,7 +59,7 @@ export default ({ S, js, sleep, moveTo, hoverText, evaluate }) => {
       await cap('It opens the files itself');
       await lines([
         ['say', '10,279 rows, but only <b>9,930 real bookings</b>: 349 rows appear twice.'],
-        ['say', '213 rows say <b>Rm 204</b> instead of <b>Room 204</b>, all in 2024.'],
+        ['say', '213 rows use old labels like <b>Rm 204</b> instead of <b>Room 204</b>, all in 2024.'],
         ['say', 'Tell me what you want built, and whether to fix those first.'],
       ], 900);
       await cap('…and finds real problems in the data');
@@ -198,7 +198,7 @@ export default ({ S, js, sleep, moveTo, hoverText, evaluate }) => {
     }],
     ['outro', async () => {
       await S('stage.caption(null); stage.step(null)');
-      await S(`stage.card('Your finish line', null, { list: ['Claude Code installed and signed in', 'A dashboard built from a messy spreadsheet', 'One wrong assumption caught in the plan', 'The key number checked against the official answer', 'A CLAUDE.md that remembers, and a skill you keep', 'A link you can share'], url: 'ncsu-libraries.github.io/agentic-coding-with-claude' })`);
+      await S(`stage.card('Your finish line', null, { list: ['Claude Code installed and signed in', 'A dashboard built from a messy spreadsheet', 'Your plan checked against the boss’s note', 'The key number checked against the official answer', 'A CLAUDE.md that remembers, and a skill you keep', 'A link you can share, or a screenshot', 'Something of your own'], url: 'ncsu-libraries.github.io/agentic-coding-with-claude' })`);
       await sleep(5200);
     }],
   ];

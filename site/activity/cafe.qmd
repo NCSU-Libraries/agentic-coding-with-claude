@@ -242,7 +242,7 @@ A wrong number usually points straight at its cause:
 :::
 
 If something on the page looks wrong, show Claude instead of describing it. Take a screenshot to the clipboard
-({{< kbd mac=Ctrl-Shift-Cmd-4 >}} on a Mac, {{< kbd win=Win-Shift-S >}} on Windows), then paste it into your prompt
+({{< kbd Ctrl-Shift-Cmd-4 >}} on a Mac, {{< kbd Win-Shift-S >}} on Windows), then paste it into your prompt
 with {{< kbd Ctrl-V >}} (Mac Terminal) or {{< kbd Alt-V >}} (Windows) and say what's off.
 
 ::: {.callout-note collapse="true" appearance="simple"}
