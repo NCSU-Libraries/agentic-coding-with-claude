@@ -131,8 +131,9 @@ export default ({ S, js, sleep, moveTo, hoverText, evaluate }) => {
       await type('/goal dashboard.html shows FY2026 = 4,351 bookings, the official count. If it doesn\'t, explain why before changing anything. Prove the final number by counting the CSV yourself, and don\'t hard-code it. Stop after 5 turns.', 10);
       await lines([
         ['goal', '◎ /goal active'],
-        ['tool', '<b>Bash</b>(awk -F, … unique booking_id, Jul 1 2025 – Jun 30 2026)'], ['res', '4351'],
-        ['say', 'The page and an independent count agree: <b>4,351</b>, each booking counted once.'],
+        ['tool', '<b>Bash</b>(cut -d, -f1,2 room_bookings.csv | … 2025-07-01 to 2026-06-30 | sort -u | wc -l)'], ['res', '4351'],
+        ['say', 'Goal met: the page shows <b>4,351</b>, counted when it opens, not typed in.'],
+        ['say', 'Counting rows instead gives 4,513: 162 rows repeat an ID already counted.'],
         ['goal', '◎ Goal met'],
       ], 800);
       await sleep(1800);
@@ -164,7 +165,12 @@ export default ({ S, js, sleep, moveTo, hoverText, evaluate }) => {
       await type('/house-style dashboard.html', 30);
       await lines([['tool', '<b>Skill</b>(house-style)'], ['tool', '<b>Edit</b>(dashboard.html)']], 700);
       await page('dashboard-styled.html', 'study-rooms/dashboard.html', 0.55);
-      await sleep(2600);
+      await sleep(2400);
+      await cap('Ask for something new: does it reach for the skill on its own?');
+      await type("Make a one-page summary for the library's dean, summary.html, with the three numbers that matter most.", 16);
+      await lines([['tool', '<b>Skill</b>(house-style)'], ['tool', '<b>Write</b>(summary.html)'], ['say', 'Followed the house-style skill. 4,351 in FY2026, +40% overall, +6% in the original rooms.']], 700);
+      await page('summary.html', 'study-rooms/summary.html', 0.55);
+      await sleep(2800);
     }],
     ['undo', async () => {
       await step('7 · Undo');

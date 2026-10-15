@@ -80,6 +80,14 @@ like `Read(README.md)` or `Bash(wc -l room_bookings.csv)`.
 
 Read its summary closely. It may point out problems in the data. **Note what it found**; you'll want it later.
 
+::: {.callout-note collapse="true" appearance="simple"}
+## What happened in our rehearsal
+
+Claude read both files with shell tools and reported: 10,279 rows but **9,930 real bookings** (349 rows exported
+twice), **213 rows saying `Rm 204`** instead of `Room 204`, and some blank group sizes. It ended with *"Tell me what you
+want built, and whether to fix those three first."*
+:::
+
 ## <span class="step-badge">2</span> Plan
 
 Your supervisor sent you this note this morning:
@@ -126,6 +134,15 @@ every time. Don't count on being asked. In the default auto mode, Claude is buil
 for questions, so plan mode is where you get to catch an assumption.
 :::
 
+::: {.callout-note collapse="true" appearance="simple"}
+## What happened in our rehearsal
+
+Claude asked: *"'Per year': calendar years? Your data stops on Sep 30, 2026, so 2026 has only nine months."* Its
+default was **calendar years**, with 2026 marked "Jan–Sep". In four rehearsal runs it asked about the year every time,
+and every time its default was calendar years. After the fiscal-year correction, its revised plan hatched the two
+partial fiscal years (FY2024 and FY2027) and compared the two complete ones.
+:::
+
 ## <span class="step-badge">3</span> Act
 
 In manual mode, Claude asks before each change. Approve the first edit or two and look at what it's writing.
@@ -156,6 +173,14 @@ When it's done, open the dashboard. Ask Claude to open it, or:
 The `!` runs a command yourself without leaving Claude Code. Double-clicking the file works too.
 
 ![A dashboard from a rehearsal run. Yours will look different: same prompt, different result.](../images/screens/study-rooms-dashboard.png){.shot}
+
+::: {.callout-note collapse="true" appearance="simple"}
+## What happened in our rehearsal
+
+Claude wrote the page, then pasted the CSV in with `cat` rather than retyping it, and checked that the copy was
+byte-identical. With no browser to look through, it recomputed the key numbers two other ways and said plainly that
+it hadn't seen the page. The page worked on the first double-click.
+:::
 
 ## <span class="step-badge">4</span> Check
 
@@ -189,6 +214,14 @@ If something on the page looks wrong, show Claude instead of describing it. Take
 ({{< kbd mac=Ctrl-Shift-Cmd-4 >}} on a Mac, {{< kbd win=Win-Shift-S >}} on Windows), then paste it into your prompt
 with {{< kbd Ctrl-V >}} (Mac Terminal) or {{< kbd Alt-V >}} (Windows) and say what's off.
 
+::: {.callout-note collapse="true" appearance="simple"}
+## What happened in our rehearsal
+
+The dashboard already said **4,351**. `/goal` made Claude prove it: it confirmed the number wasn't typed into the
+page, counted unique `booking_id`s in the fiscal-year date range two separate ways, and showed that counting rows
+instead gives 4,513 (162 repeated IDs). The goal was met in one round.
+:::
+
 ## <span class="step-badge">5</span> Remember
 
 Claude forgets everything when a conversation ends, except what's written down. You'll write your rule in
@@ -213,6 +246,14 @@ Which fiscal year had the most bookings, and how much did it grow over the year 
 
 It should answer in fiscal years without being told again: FY2026, up about {{< var key.study-rooms.growth >}}
 from FY2025.
+
+::: {.callout-note collapse="true" appearance="simple"}
+## What happened in our rehearsal
+
+After `/clear`, a fresh session answered: *"FY2026 had the most bookings: 4,351. That is up 1,242 (+39.9%, about 40%)
+from FY2025's 3,109."* It followed both rules in `CLAUDE.md` without being told. Along the way, one of its own shell
+commands printed 0 because of a quoting bug. It noticed, explained why, and fixed it.
+:::
 
 ## <span class="step-badge">6</span> Make a skill
 
@@ -241,6 +282,15 @@ Now ask for something new, without mentioning the style, and watch whether Claud
 ```text
 Make a one-page summary for the library's dean, summary.html, with the three numbers that matter most.
 ```
+:::
+
+::: {.callout-note collapse="true" appearance="simple"}
+## What happened in our rehearsal
+
+For the dean's summary, Claude **used the house-style skill without being asked**. It also chose a third number on its
+own: **+6%** growth in the original twelve rooms, next to the **+40%** headline, *"because the headline +40% alone
+would mislead"*: most of the growth came from the four new rooms. See it on the
+[finished examples](../examples.qmd) page.
 :::
 
 ## <span class="step-badge">7</span> Undo

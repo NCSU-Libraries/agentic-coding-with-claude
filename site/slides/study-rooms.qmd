@@ -3,6 +3,7 @@ title: "Agentic Coding with Claude"
 subtitle: "Data Science Special Topics · NC State University Libraries"
 date: 2026-10-15
 date-format: long
+rainbow-shot: study-rooms-rainbow.png
 format:
   revealjs:
     theme: [default, ../theme/ncsu.scss, ../theme/slides.scss]

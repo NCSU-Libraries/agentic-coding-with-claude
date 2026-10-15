@@ -118,7 +118,7 @@ When the plan uses those dates, and handles the oddities from step 1 the way you
 
 ::: {.watch}
 In our rehearsals Claude always asked for the exam dates, and it knew not to define them by the sales. But its
-fallback, if you just said "go," was to pencil in the busiest weeks or to assume finals only. Both are wrong here.
+fallback, if you just said "go," was finals only (missing both midterm weeks) or no exam comparison at all.
 In the default auto mode, Claude is built to keep working rather than stop for questions, so plan mode is where you
 get to catch an assumption.
 :::

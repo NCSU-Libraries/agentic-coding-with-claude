@@ -3,7 +3,7 @@
 #
 #   bash tools/demo-folder.sh study-rooms     # or: cafe
 #
-# Creates ~/Desktop/projects/dss/workshops/agentic-coding-demo/<activity>/ from starters/<activity>/, and deletes
+# Creates ~/Desktop/projects/dss/workshops/agentic-coding-demo/<activity>/ from starters/<activity>/, and empties
 # Claude Code's auto memory for that folder, so the session doesn't remember a rehearsal. The folder sits outside
 # the repo on purpose: Claude Code reads CLAUDE.md from every parent folder, and this repo's notes name the trap.
 set -euo pipefail
@@ -20,7 +20,8 @@ mkdir -p "$dest"
 cp "$src"/* "$dest"/
 
 # Claude Code keeps auto memory per project folder, under a name made from the path with "/" turned into "-".
-memory="$HOME/.claude/projects/$(echo "$dest" | sed 's#/#-#g')"
+# Only the memory/ folder is removed; past session transcripts stay, and a fresh `claude` doesn't read them.
+memory="$HOME/.claude/projects/$(echo "$dest" | sed 's#/#-#g')/memory"
 rm -rf "$memory"
 
 echo "Fresh demo folder: $dest"

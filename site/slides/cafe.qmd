@@ -3,6 +3,7 @@ title: "Agentic Coding with Claude"
 subtitle: "Data Science Special Topics · NC State University Libraries"
 date: 2026-10-15
 date-format: long
+rainbow-shot: cafe-rainbow.png
 format:
   revealjs:
     theme: [default, ../theme/ncsu.scss, ../theme/slides.scss]
@@ -117,9 +118,9 @@ When the plan is ready, you choose:
 
 Claude **asked** for the exam dates every time.
 
-Its fallback, if you just said "go": pencil in **the busiest weeks**, or assume **finals only**.
+Its fallback, if you just said "go": **finals only**, missing both midterm weeks, or **no exam panel** at all.
 
-This café's two busiest weeks are a **career fair** and **homecoming**.
+The café's two busiest weeks were a **career fair** and **homecoming**, not exams.
 :::
 :::
 
