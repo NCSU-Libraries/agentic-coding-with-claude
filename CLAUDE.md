@@ -30,7 +30,7 @@ other is self-guided. Which one runs live is set in `site/_variables.yml` (`live
 | `site/slides/_*.qmd` | Slides shared by both decks, pulled in with `{{< include >}}` |
 | `starters/<activity>/` | What attendees download: `README.md` plus one CSV. Nothing else |
 | `examples/<activity>/` | The finished folder from a rehearsal run |
-| `instructor/` | Facilitation guide, decision memo, answer keys, rehearsal transcripts, registrant email |
+| `instructor/` | **Private, local only:** facilitation guide, decision memo, answer keys, rehearsal transcripts, registrant email, run sheet |
 | `tools/make_data.py` | Seeded generator for both CSVs and `instructor/answer-keys.json` |
 | `tools/package.sh` | Builds `site/downloads/*.zip` and `site/examples/` (both gitignored) |
 | `tools/shoot.mjs` | Headless Chrome screenshots of pages or slides. Gives a `slide` index in reading order |
@@ -84,4 +84,7 @@ The Pages workflow (`.github/workflows/deploy-pages.yml`) runs `package.sh`, the
     `Reveal.getSlides()` instead.
 - **The zips have no enclosing folder.** That way both macOS Archive Utility and Windows "Extract All" produce exactly
   one `study-rooms/` or `cafe/` folder.
-- `instructor/` names each activity's trap. The site never links to it. Decide before making the repo public.
+- **`instructor/` is private** (decided 2026-10-15). It's in `.gitignore` and is its own local git repo: commit
+  changes to it with `git -C instructor`, never in this repo. The site never links to it. The old history that
+  included it is in the local branch `main-with-instructor` and `.git/before-instructor-removal.bundle`. Never push
+  either.

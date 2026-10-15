@@ -13,6 +13,9 @@
 __pycache__/
 .venv/
 
+# Instructor notes stay private: their own local git repo, never part of this one
+/instructor/
+
 # Built by tools/package.sh from starters/ and examples/
 /site/downloads/
 /site/examples/
