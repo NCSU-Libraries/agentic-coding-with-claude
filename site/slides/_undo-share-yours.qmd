@@ -10,13 +10,13 @@ Look at it. Enjoy it. Then:
 :::
 
 ::: {}
-![](../images/screens/{{< meta rainbow-shot >}}){.shot height="210" fig-alt="The dashboard after the rainbow request"}
+![](../images/screens/{{< meta rainbow-shot >}}){.shot height="150" fig-alt="The dashboard after the rainbow request"}
 :::
 :::
 
 Pick the message before the rainbow → **restore the code**. Reload. (Or <kbd>Esc</kbd> <kbd>Esc</kbd> on an empty prompt.)
 
-::: {.card .red style="margin-top:16px"}
+::: {.card .red style="margin-top:6px"}
 **Rewind restores what Claude edited. It can't undo shell commands** like deleting (`rm`) or moving (`mv`) files.
 For real work: copies, or git.
 :::
