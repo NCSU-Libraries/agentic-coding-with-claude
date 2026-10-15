@@ -272,7 +272,9 @@ Publish dashboard.html as an artifact.
 :::
 
 Claude gives you a link to a private page on claude.ai. Open it, choose **Share**, and you can make a public link
-anyone can open. This needs a Pro, Max, Team or Enterprise plan; on a Console account, share a screenshot instead.
+anyone can open. This needs a Pro, Max, Team or Enterprise plan. On a Team or Enterprise plan, public links are off
+unless your organization turns them on, so share within your organization instead. On a Console account, share a
+screenshot.
 `/artifacts` lists what you've published.
 
 ## Make it yours

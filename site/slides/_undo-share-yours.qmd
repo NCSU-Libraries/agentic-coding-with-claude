@@ -19,8 +19,8 @@ For real work: copies, or git.
 
 - A private page on claude.ai, with a link
 - **Share** in the page header → a public link anyone can open
-- Needs Pro or higher; `/artifacts` lists everything you've published
-- On a Console account? Share a screenshot instead
+- Needs Pro or higher; on Team/Enterprise plans public links may be off
+- `/artifacts` lists everything you've published. Console account? Share a screenshot
 
 [Show your neighbor. Volunteers: we'll put two on the screen.]{.pill .dark}
 

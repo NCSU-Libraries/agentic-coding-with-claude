@@ -1,0 +1,244 @@
+<!doctype html>
+<!--
+  The stage for the walkthrough video. tools/record-tour.mjs serves this folder over HTTP, loads this page in
+  headless Chrome, and drives it through window.stage. The terminal is a simplified re-creation of Claude Code's
+  screen; the browser frame shows the real pages from a rehearsal run.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Tour stage</title>
+<style>
+  :root { --red: #CC0000; --ink: #1A1A1A; --muted: #6D6E71; --term: #1E1E1E; --termfg: #E8E8E8; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1280px; height: 720px; overflow: hidden; background: #ECEAE6; font-family: "Helvetica Neue", Arial, sans-serif; }
+  #stage { position: relative; width: 1280px; height: 720px; }
+
+  /* Windows */
+  .win { position: absolute; border-radius: 12px; overflow: hidden; box-shadow: 0 18px 50px rgba(0,0,0,.28); transition: all 700ms cubic-bezier(.4,0,.2,1); }
+  .bar { height: 30px; display: flex; align-items: center; gap: 7px; padding: 0 12px; font-size: 12px; }
+  .dot { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+  .dot.r { background: #FF5F57; } .dot.y { background: #FEBC2E; } .dot.g { background: #28C840; }
+  .bar .title { flex: 1; text-align: center; margin-right: 50px; }
+
+  #term { background: var(--term); color: var(--termfg); }
+  #term .bar { background: #2D2D2D; color: #AAA; }
+  #term .body { position: absolute; top: 30px; left: 0; right: 0; bottom: 74px; padding: 14px 18px; font: 14.5px/1.5 "JetBrains Mono", Menlo, monospace; overflow: hidden; }
+  #term .lines { position: absolute; left: 18px; right: 18px; bottom: 6px; }
+  #term .ln { white-space: pre-wrap; word-break: break-word; margin: 2px 0; }
+  #term .ln.user { color: #FFF; background: #333; border-radius: 6px; padding: 6px 10px; margin: 10px 0 8px; }
+  #term .ln.user::before { content: "> "; color: #999; }
+  #term .ln.shell::before { content: "$ "; color: #8BD48B; }
+  #term .ln.shell { color: #FFF; margin-top: 8px; }
+  #term .ln.tool::before { content: "⏺ "; color: #8BD48B; }
+  #term .ln.tool { color: #E8E8E8; }
+  #term .ln.tool b { color: #FFF; }
+  #term .ln.res { color: #9A9A9A; padding-left: 22px; }
+  #term .ln.res::before { content: "⎿  "; color: #777; }
+  #term .ln.say::before { content: "⏺ "; color: #FFF; }
+  #term .ln.say { color: #F2F2F2; }
+  #term .ln.dim { color: #9A9A9A; }
+  #term .ln.ok { color: #8BD48B; }
+  #term .ln.warn { color: #FFB86B; }
+  #term .ln.goal { color: #C9B8FF; }
+  #term .box { border: 1px solid #555; border-radius: 8px; padding: 10px 14px; margin: 10px 0; }
+  #term .box .q { color: #FFF; font-weight: 700; margin-bottom: 6px; }
+  #term .opt { color: #CFCFCF; padding: 1px 0; }
+  #term .opt.sel { color: #FFF; }
+  #term .opt.sel::before { content: "❯ "; color: #FF9E9E; }
+  #term .opt:not(.sel)::before { content: "  "; }
+  #term .welcome { border: 1px solid #D97757; border-radius: 8px; padding: 10px 14px; color: #EEE; margin-bottom: 8px; }
+  #term .welcome b { color: #D97757; }
+  #term .input { position: absolute; left: 14px; right: 14px; bottom: 30px; height: 40px; border: 1px solid #555; border-radius: 8px;
+                 padding: 9px 12px; font: 14.5px/1.4 "JetBrains Mono", Menlo, monospace; color: #FFF; white-space: nowrap; overflow: hidden; }
+  #term .input::before { content: "> "; color: #999; }
+  #term .caret { display: inline-block; width: 8px; height: 17px; background: #DDD; vertical-align: -3px; animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  #term .mode { position: absolute; left: 16px; bottom: 8px; font: 12.5px "JetBrains Mono", Menlo, monospace; color: #999; }
+  #term .mode .m { color: #CFCFCF; }
+  #term .mode.plan .m { color: #6FB7FF; }
+  #term .mode.auto .m { color: #FFB86B; }
+  #term .mode.accept .m { color: #C59BFF; }
+  #term .recreated { position: absolute; right: 16px; bottom: 8px; font-size: 11px; color: #777; font-family: "Helvetica Neue", Arial, sans-serif; }
+
+  #browser { background: #FFF; }
+  #browser .bar { background: #F1F1F1; color: #444; border-bottom: 1px solid #DDD; }
+  #browser .url { flex: 1; margin: 0 40px 0 14px; background: #FFF; border: 1px solid #DDD; border-radius: 6px; padding: 3px 10px; font-size: 12px; color: #555; white-space: nowrap; overflow: hidden; }
+  #browser iframe { position: absolute; top: 30px; left: 0; border: 0; background: #FFF; transform-origin: 0 0; }
+  #browser .fade { position: absolute; top: 30px; left: 0; right: 0; bottom: 0; background: #FFF; opacity: 0; transition: opacity 400ms; pointer-events: none; }
+
+  /* Layouts */
+  .split #term { left: 30px; top: 40px; width: 560px; height: 600px; }
+  .split #browser { left: 610px; top: 40px; width: 640px; height: 600px; }
+  .term #term { left: 140px; top: 40px; width: 1000px; height: 600px; }
+  .term #browser { left: 1300px; top: 40px; width: 640px; height: 600px; opacity: 0; }
+  .browser #term { left: -620px; top: 40px; width: 560px; height: 600px; opacity: 0; }
+  .browser #browser { left: 90px; top: 30px; width: 1100px; height: 620px; }
+
+  /* Overlays */
+  #note { position: absolute; right: 70px; top: 120px; width: 440px; background: #FFF6C9; border: 1px solid #E8D68A; border-radius: 6px;
+          padding: 22px 26px; box-shadow: 0 20px 44px rgba(0,0,0,.25); font-size: 21px; line-height: 1.4; color: var(--ink);
+          transform: rotate(-1.5deg) translateY(30px); opacity: 0; transition: all 600ms cubic-bezier(.2,.8,.2,1); z-index: 20; }
+  #note.on { opacity: 1; transform: rotate(-1.5deg) translateY(0); }
+  #note .from { display: block; font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #7A6400; margin-bottom: 8px; }
+  #answer { position: absolute; right: 80px; top: 150px; background: #FFF; border: 4px solid var(--red); border-radius: 16px; padding: 16px 30px;
+            box-shadow: 0 20px 44px rgba(0,0,0,.25); opacity: 0; transform: scale(.9); transition: all 500ms cubic-bezier(.2,.8,.2,1); z-index: 20; }
+  #answer.on { opacity: 1; transform: scale(1); }
+  #answer .l { display: block; font-size: 13px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+  #answer .v { display: block; font-size: 58px; font-weight: 800; color: var(--red); line-height: 1.05; }
+  #file { position: absolute; right: 60px; top: 70px; width: 600px; background: #FFF; border-radius: 10px; box-shadow: 0 20px 44px rgba(0,0,0,.28);
+          opacity: 0; transform: translateY(24px); transition: all 600ms cubic-bezier(.2,.8,.2,1); z-index: 20; overflow: hidden; }
+  #file.on { opacity: 1; transform: translateY(0); }
+  #file .name { background: #F1F1F1; border-bottom: 1px solid #DDD; padding: 8px 14px; font: 13px "JetBrains Mono", Menlo, monospace; color: #444; }
+  #file pre { margin: 0; padding: 16px 18px; font: 14px/1.5 "JetBrains Mono", Menlo, monospace; color: #222; white-space: pre-wrap; max-height: 470px; overflow: hidden; }
+
+  #caption { position: fixed; left: 50%; bottom: 26px; z-index: 50; max-width: 78vw; padding: 12px 24px; border-radius: 8px;
+             background: rgba(12,12,12,.92); color: #FFF; font: 700 23px/1.3 "Helvetica Neue", Arial, sans-serif; white-space: nowrap;
+             opacity: 0; transform: translate(-50%, 14px); transition: opacity 320ms ease, transform 320ms ease; box-shadow: 0 12px 34px rgba(0,0,0,.32); }
+  #caption::before { content: ""; display: inline-block; width: 5px; height: 20px; margin: 0 12px -3px 0; background: var(--red); }
+  #caption.on { opacity: 1; transform: translate(-50%, 0); }
+  #step { position: fixed; left: 26px; top: 0; z-index: 50; background: var(--red); color: #FFF; font: 800 14px "Helvetica Neue", Arial, sans-serif;
+          letter-spacing: 2px; text-transform: uppercase; padding: 7px 14px; border-radius: 0 0 8px 8px; opacity: 0; transition: opacity 300ms; }
+  #step.on { opacity: 1; }
+
+  #card { position: fixed; inset: 0; z-index: 100; display: grid; place-content: center; justify-items: center; gap: 18px; background: #161616;
+          color: #FFF; text-align: center; opacity: 0; transition: opacity 600ms ease; pointer-events: none; }
+  #card.on { opacity: 1; }
+  #card img { height: 44px; }
+  #card h1 { margin: 6px 0 0; font: 800 58px/1.08 "Helvetica Neue", Arial, sans-serif; letter-spacing: -0.02em; }
+  #card p { margin: 0; color: #D6D6D6; font: 400 24px/1.4 "Helvetica Neue", Arial, sans-serif; max-width: 900px; }
+  #card .rule { width: 72px; height: 5px; background: var(--red); }
+  #card .points { display: flex; gap: 26px; margin-top: 8px; font: 700 21px/1.3 "Helvetica Neue", Arial, sans-serif; }
+  #card .points span::before { content: ""; display: inline-block; width: 9px; height: 9px; margin: 0 10px 2px 0; border-radius: 50%; background: var(--red); }
+  #card .list { text-align: left; font: 400 22px/1.7 "Helvetica Neue", Arial, sans-serif; color: #EEE; margin-top: 6px; }
+  #card .list div::before { content: "☐  "; color: #FF8A8A; }
+  #card .url { font: 700 22px "Helvetica Neue", Arial, sans-serif; color: #FF9E9E; margin-top: 6px; }
+</style>
+</head>
+<body>
+<div id="stage" class="term">
+  <div class="win" id="term">
+    <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="title" id="term-title">Terminal</span></div>
+    <div class="body"><div class="lines" id="lines"></div></div>
+    <div class="input" id="input"><span id="typed"></span><span class="caret"></span></div>
+    <div class="mode" id="mode"></div>
+    <div class="recreated">simplified re-creation</div>
+  </div>
+  <div class="win" id="browser">
+    <div class="bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="url" id="url"></span></div>
+    <iframe id="frame" title="page"></iframe>
+    <div class="fade" id="fade"></div>
+  </div>
+  <div id="note"></div>
+  <div id="answer"><span class="l" id="answer-l"></span><span class="v" id="answer-v"></span></div>
+  <div id="file"><div class="name" id="file-name"></div><pre id="file-text"></pre></div>
+</div>
+<div id="step"></div>
+<div id="caption"></div>
+<div id="card"></div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const esc = (s) => String(s).replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]));
+
+window.stage = {
+  layout(name) { $('stage').className = name; },
+  caption(text) {
+    const c = $('caption');
+    if (!text) { c.classList.remove('on'); return; }
+    c.textContent = text; c.classList.add('on');
+  },
+  step(text) { const s = $('step'); if (!text) { s.classList.remove('on'); return; } s.textContent = text; s.classList.add('on'); },
+  card(title, sub, opts = {}) {
+    const card = $('card');
+    if (!title) { card.classList.remove('on'); return; }
+    let html = `<img src="logo-white.png" alt=""><h1>${esc(title)}</h1><div class="rule"></div>`;
+    if (sub) html += `<p>${esc(sub)}</p>`;
+    if (opts.points) html += `<div class="points">${opts.points.map((p) => `<span>${esc(p)}</span>`).join('')}</div>`;
+    if (opts.list) html += `<div class="list">${opts.list.map((p) => `<div>${esc(p)}</div>`).join('')}</div>`;
+    if (opts.url) html += `<div class="url">${esc(opts.url)}</div>`;
+    card.innerHTML = html;
+    if (opts.instant) { card.style.transition = 'none'; card.classList.add('on'); card.offsetWidth; card.style.transition = ''; }
+    else card.classList.add('on');
+  },
+  term: {
+    title(t) { $('term-title').textContent = t; },
+    clear() { $('lines').innerHTML = ''; },
+    mode(m) {
+      const labels = { auto: '⏵⏵ auto mode on', plan: '⏸ plan mode on', manual: '⏸ manual mode on', accept: '⏵⏵ accept edits on', '': '' };
+      $('mode').className = 'mode ' + m;
+      $('mode').innerHTML = m ? `<span class="m">${labels[m]}</span> <span>(shift+tab to cycle)</span>` : '';
+    },
+    add(html, cls) {
+      const d = document.createElement('div');
+      d.className = 'ln ' + (cls || '');
+      d.innerHTML = html;
+      $('lines').append(d);
+      while ($('lines').offsetHeight > $('lines').parentElement.clientHeight - 20 && $('lines').children.length > 1) $('lines').firstElementChild.remove();
+      return d;
+    },
+    async type(text, delay = 26) {
+      const t = $('typed'); t.textContent = '';
+      for (const ch of text) { t.textContent += ch; await sleep(delay + Math.random() * 18); }
+    },
+    async submit(cls = 'user') {
+      const text = $('typed').textContent; $('typed').textContent = '';
+      window.stage.term.add(esc(text), cls);
+      await sleep(250);
+    },
+    async lines(items, gap = 420) {
+      for (const [cls, html] of items) { window.stage.term.add(html, cls); await sleep(gap); }
+    },
+    box(html) { return window.stage.term.add(`<div class="box">${html}</div>`, ''); },
+  },
+  browser: {
+    async load(src, label, zoom = 0.62) {
+      const f = $('frame');
+      $('fade').style.opacity = 1;
+      await sleep(300);
+      const w = $('browser').clientWidth, h = $('browser').clientHeight - 30;
+      f.style.width = (w / zoom) + 'px'; f.style.height = (h / zoom) + 'px'; f.style.transform = `scale(${zoom})`;
+      await new Promise((r) => { f.onload = r; f.src = src; });
+      $('url').textContent = label || src;
+      await sleep(500);
+      $('fade').style.opacity = 0;
+    },
+    async scroll(y, ms = 1200) {
+      const win = $('frame').contentWindow;
+      const from = win.scrollY, start = performance.now();
+      await new Promise((resolve) => {
+        const tick = (now) => {
+          const p = Math.min(1, (now - start) / ms), e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+          win.scrollTo(0, from + (y - from) * e);
+          if (p < 1) requestAnimationFrame(tick); else resolve();
+        };
+        requestAnimationFrame(tick);
+      });
+    },
+    find(text) {
+      // Page-space center of the first element whose own text includes `text`, mapped to stage coordinates.
+      const doc = $('frame').contentDocument, f = $('frame'), zoom = parseFloat(f.style.transform.replace('scale(', '')) || 1;
+      const walker = doc.createTreeWalker(doc.body, NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) {
+        if (walker.currentNode.textContent.includes(text)) {
+          const r = walker.currentNode.parentElement.getBoundingClientRect(), fr = f.getBoundingClientRect();
+          return { x: fr.left + (r.left + r.width / 2) * zoom, y: fr.top + (r.top + r.height / 2) * zoom };
+        }
+      }
+      return null;
+    },
+  },
+  note(html) { const n = $('note'); if (!html) { n.classList.remove('on'); return; } n.innerHTML = html; n.classList.add('on'); },
+  answer(label, value) {
+    if (!label) { $('answer').classList.remove('on'); return; }
+    $('answer-l').textContent = label; $('answer-v').textContent = value; $('answer').classList.add('on');
+  },
+  file(name, text) {
+    if (!name) { $('file').classList.remove('on'); return; }
+    $('file-name').textContent = name; $('file-text').textContent = text; $('file').classList.add('on');
+  },
+};
+</script>
+</body>
+</html>
