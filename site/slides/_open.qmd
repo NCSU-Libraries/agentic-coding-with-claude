@@ -4,7 +4,7 @@
 ::: {}
 [Open the materials]{.eyebrow}
 
-[ncsu-libraries.github.io/<br>agentic-coding-with-claude]{.statement style="font-size:0.95em"}
+[go.ncsu.edu/dss-claude]{.statement}
 
 ::: {.cards .two style="margin-top:28px"}
 ::: {.card}
@@ -20,7 +20,7 @@ Pair with a neighbor. You'll be the one who checks the agent's work.
 :::
 
 ::: {style="text-align:center;padding-top:30px"}
-![](../images/qr-site.png){.qr .qr-big fig-alt="QR code for the workshop materials page"}
+![](../images/qr-session.svg){.qr .qr-big fig-alt="QR code for the workshop materials page, go.ncsu.edu/dss-claude"}
 :::
 :::
 

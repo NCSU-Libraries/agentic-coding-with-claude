@@ -16,7 +16,7 @@ format:
     transition: fade
     background-transition: fade
     preview-links: false
-    footer: "Data Science Services · ncsu-libraries.github.io/agentic-coding-with-claude"
+    footer: "Data Science Services · go.ncsu.edu/dss-claude"
     logo: ../images/lib_logo_whiteBG.png
 ---
 

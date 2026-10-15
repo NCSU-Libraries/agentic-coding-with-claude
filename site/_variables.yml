@@ -11,6 +11,7 @@ event:
 
 site: "https://ncsu-libraries.github.io/agentic-coding-with-claude/"
 site-short: "ncsu-libraries.github.io/agentic-coding-with-claude"
+go: "go.ncsu.edu/dss-claude"   # short link to the site, on the slides and in the email
 repo: "https://github.com/NCSU-Libraries/agentic-coding-with-claude"
 help: "https://go.ncsu.edu/getdatahelp"
 email: "lib-datascienceservices@ncsu.edu"

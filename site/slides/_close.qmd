@@ -43,9 +43,9 @@
 :::
 
 ::: {style="text-align:center"}
-![](../images/qr-site.png){.qr fig-alt="QR code for the workshop materials page"}
+![](../images/qr-session.svg){.qr fig-alt="QR code for the workshop materials page, go.ncsu.edu/dss-claude"}
 
-[ncsu-libraries.github.io/<br>agentic-coding-with-claude]{.muted}
+[go.ncsu.edu/dss-claude]{.muted}
 :::
 :::
 

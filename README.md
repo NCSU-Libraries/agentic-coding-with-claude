@@ -14,7 +14,8 @@ A hands-on, in-person introduction to [Claude Code](https://code.claude.com/docs
 Libraries' Data Science Services, part of the *Data Science Special Topics* series. First run: Thursday, October 15,
 2026, 2:00–3:30 pm, D. H. Hill Jr. Library.
 
-**Workshop site:** <https://ncsu-libraries.github.io/agentic-coding-with-claude/>
+**Workshop site:** <https://ncsu-libraries.github.io/agentic-coding-with-claude/>, or the short link
+<https://go.ncsu.edu/dss-claude>
 
 ## What attendees do
 
@@ -66,11 +67,8 @@ Other scripts:
 | `bash tools/demo-folder.sh study-rooms` | Makes a fresh demo folder outside the repo and clears its Claude Code memory |
 
 If the site moves to a different GitHub owner or repo name, search for `ncsu-libraries.github.io` and
-`NCSU-Libraries/agentic-coding-with-claude`. Change both, and regenerate `site/images/qr-site.png`:
-
-```bash
-uv run --with 'qrcode[pil]' python -c "import qrcode; qrcode.make('https://NEW-URL/', border=2, box_size=12).save('site/images/qr-site.png')"
-```
+`NCSU-Libraries/agentic-coding-with-claude` and change both. Then point the go link `go.ncsu.edu/dss-claude` at the new
+address: the slides show it, and their QR code (`site/images/qr-session.svg`, made by go.ncsu.edu) encodes it.
 
 ## Publishing
 
